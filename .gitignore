@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+cctv_v2_env/
+venv/
+env/
+
+# Face encodings
+*.pkl
+
+# Logs
+*.log
+
+# VS Code
+.vscode/
+
+# OS Files
+Thumbs.db
+.DS_Store
+
+# Build files
+build/
+dist/

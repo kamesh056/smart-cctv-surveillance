@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Detection Settings{% endblock %}
+{% block page_title %}Detection Settings{% endblock %}
+{% block page_sub %}Tune face recognition range and accuracy{% endblock %}
+
+{% block content %}
+<div style="max-width:640px">
+  <div class="card">
+    <div class="card-title">Recognition Engine</div>
+    <form method="POST" style="margin-top:18px">
+
+      <div class="form-group">
+        <label class="form-label">Detection Model</label>
+        <select class="form-select" name="model">
+          <option value="hog" {% if cfg.recognition.model == 'hog' %}selected{% endif %}>HOG (CPU — fast, less accurate at distance)</option>
+          <option value="cnn" {% if cfg.recognition.model == 'cnn' %}selected{% endif %}>CNN (GPU — slow, best accuracy + range)</option>
+        </select>
+        <div class="form-hint">Use <strong>CNN</strong> if you have a GPU and need detection at greater distances.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Frame Scale Factor — <span id="sfVal">{{ cfg.recognition.scale_factor }}</span></label>
+        <input type="range" name="scale_factor" min="0.25" max="1.0" step="0.05"
+               value="{{ cfg.recognition.scale_factor }}"
+               oninput="document.getElementById('sfVal').textContent=this.value">
+        <div class="form-hint">
+          <strong>Higher value = better long-range detection, slower.</strong><br>
+          0.25 = quarter-size (fast, short range) · 0.75 = better range · 1.0 = full frame (best range, slow).<br>
+          Recommended: <code>0.75</code> for most cameras.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Upsample Count — <span id="upVal">{{ cfg.recognition.upsample }}</span></label>
+        <input type="range" name="upsample" min="0" max="2" step="1"
+               value="{{ cfg.recognition.upsample }}"
+               oninput="document.getElementById('upVal').textContent=this.value">
+        <div class="form-hint">
+          <strong>Upsamples the image to detect smaller/farther faces.</strong><br>
+          0 = fastest (large faces only) · 1 = default · 2 = detects small far-away faces (slow).<br>
+          Recommended: <code>1</code> or <code>2</code> if faces aren't being detected from distance.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Match Tolerance — <span id="tolVal">{{ cfg.recognition.tolerance }}</span></label>
+        <input type="range" name="tolerance" min="0.3" max="0.7" step="0.02"
+               value="{{ cfg.recognition.tolerance }}"
+               oninput="document.getElementById('tolVal').textContent=parseFloat(this.value).toFixed(2)">
+        <div class="form-hint">
+          Lower = stricter (fewer false positives) · Higher = more lenient (fewer misses).<br>
+          Recommended: <code>0.5</code> — 0.6 if lighting is poor.
+        </div>
+      </div>
+
+      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:20px">
+        <div style="font-size:11px;font-weight:700;color:var(--amber);margin-bottom:10px;font-family:var(--mono)">⚡ RECOMMENDED SETTINGS FOR BETTER RANGE</div>
+        <div style="font-size:12px;color:var(--text);line-height:1.8;font-family:var(--mono)">
+          scale_factor: <span style="color:var(--green)">0.75</span><br>
+          upsample: <span style="color:var(--green)">2</span><br>
+          tolerance: <span style="color:var(--green)">0.55</span><br>
+          model: <span style="color:var(--green)">hog</span> (or cnn if GPU available)
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">💾 Save Detection Settings</button>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="card-title">How Detection Range Works</div>
+    <div style="font-size:13px;color:var(--text);line-height:1.9;margin-top:12px">
+      The face recognizer resizes each frame before running detection.<br><br>
+      <strong style="color:var(--white)">scale_factor</strong>: A value of 0.25 means faces need to be very close and large to be detected.
+      Setting it to 0.75–1.0 preserves more image detail, allowing detection of faces that are further away from the camera.<br><br>
+      <strong style="color:var(--white)">upsample</strong>: Internally upscales the image so the detector can find smaller faces. Setting to 2 significantly increases range but doubles processing time.<br><br>
+      After changing settings, <strong style="color:var(--accent)">restart the CCTV Engine</strong> from the Dashboard for changes to take effect.
+    </div>
+  </div>
+</div>
+{% endblock %}

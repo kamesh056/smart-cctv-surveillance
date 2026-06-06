@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Persons{% endblock %}
+{% block page_title %}Authorized Persons{% endblock %}
+{% block page_sub %}Manage enrolled individuals in the face database{% endblock %}
+
+{% block content %}
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+  <div style="font-size:13px;color:var(--text2)">{{ persons|length }} person(s) enrolled</div>
+  <div style="display:flex;gap:10px">
+    <a href="{{ url_for('add_person') }}" class="btn btn-primary btn-sm">➕ Add Person</a>
+  </div>
+</div>
+
+{% if persons %}
+<div class="card">
+  <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th>ID</th><th>Name</th><th>Role</th><th>Contact</th><th>Enrolled</th><th>Added</th><th>Actions</th>
+      </tr></thead>
+      <tbody>
+      {% for p in persons %}
+      <tr>
+        <td style="font-family:var(--mono);font-size:11px;color:var(--text2)">{{ p.id }}</td>
+        <td style="font-weight:600;color:var(--white)">{{ p.name }}</td>
+        <td>{{ p.role or '—' }}</td>
+        <td style="font-size:12px">{{ p.contact or '—' }}</td>
+        <td>
+          {% if p.enrolled %}
+            <span class="badge badge-green">✓ Video</span>
+          {% else %}
+            <span class="badge badge-amber">⚠ Missing</span>
+          {% endif %}
+        </td>
+        <td style="font-family:var(--mono);font-size:11px;color:var(--text2)">{{ p.added or '—' }}</td>
+        <td>
+          <form method="POST" action="{{ url_for('delete_person', person_id=p.id) }}"
+                onsubmit="return confirm('Remove {{ p.name }} from the system?')">
+            <button type="submit" class="btn btn-danger btn-xs">Remove</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% else %}
+<div class="card" style="text-align:center;padding:60px;border-style:dashed">
+  <div style="font-size:36px;margin-bottom:14px">👤</div>
+  <div style="color:var(--white);font-weight:600;margin-bottom:8px">No persons enrolled</div>
+  <div style="color:var(--text2);font-size:13px;margin-bottom:20px">
+    Add authorized persons by uploading an enrollment video.
+  </div>
+  <a href="{{ url_for('add_person') }}" class="btn btn-primary">Add First Person</a>
+</div>
+{% endif %}
+{% endblock %}

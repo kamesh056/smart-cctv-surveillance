@@ -1,0 +1,136 @@
+<!-- ═══════════════════════════════════════════════════════════════
+     NeuralGuard Intruder Buzzer
+     ADD THIS BLOCK to templates/base.html just before </body>
+     ═══════════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ── AudioContext buzzer (no external file needed) ────────────── */
+  let _ctx = null;
+  let _buzzing = false;
+  let _oscillators = [];
+
+  function getCtx() {
+    if (!_ctx) {
+      _ctx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    return _ctx;
+  }
+
+  function startBuzzer() {
+    if (_buzzing) return;
+    _buzzing = true;
+
+    const ctx = getCtx();
+
+    // Two oscillators for a harsh alarm tone
+    const freqs = [880, 1100];
+    _oscillators = freqs.map(freq => {
+      const osc  = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      gain.gain.setValueAtTime(0.25, ctx.currentTime);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      return { osc, gain };
+    });
+
+    // Beep pattern: on 600ms / off 300ms
+    let on = true;
+    _buzzerInterval = setInterval(() => {
+      on = !on;
+      _oscillators.forEach(({ gain }) =>
+        gain.gain.setValueAtTime(on ? 0.25 : 0, _ctx.currentTime));
+    }, on ? 600 : 300);
+
+    showBuzzerBanner(true);
+    console.warn('[NeuralGuard] 🚨 INTRUDER DETECTED — Buzzer ON');
+  }
+
+  let _buzzerInterval = null;
+
+  function stopBuzzer() {
+    if (!_buzzing) return;
+    _buzzing = false;
+    clearInterval(_buzzerInterval);
+    _oscillators.forEach(({ osc }) => { try { osc.stop(); } catch(e){} });
+    _oscillators = [];
+    showBuzzerBanner(false);
+    console.log('[NeuralGuard] Buzzer OFF');
+  }
+
+  /* ── On-screen alert banner ───────────────────────────────────── */
+  function showBuzzerBanner(visible) {
+    let banner = document.getElementById('ng-buzzer-banner');
+    if (!banner) {
+      banner = document.createElement('div');
+      banner.id = 'ng-buzzer-banner';
+      banner.innerHTML = `
+        <span style="font-size:1.1rem;">🚨 INTRUDER DETECTED</span>
+        <button onclick="window._ngMuteBuzzer()" style="
+          margin-left:1rem; background:#fff3; border:1px solid #fff6;
+          color:#fff; padding:3px 12px; border-radius:20px;
+          cursor:pointer; font-size:.8rem;">Mute</button>
+      `;
+      Object.assign(banner.style, {
+        display:        'none',
+        position:       'fixed',
+        top:            '0',
+        left:           '0',
+        right:          '0',
+        zIndex:         '99999',
+        background:     'linear-gradient(90deg,#b00,#e00,#b00)',
+        backgroundSize: '200%',
+        animation:      'ng-slide 1.5s linear infinite, ng-blink .5s step-end infinite',
+        color:          '#fff',
+        fontWeight:     '700',
+        textAlign:      'center',
+        padding:        '.65rem',
+        letterSpacing:  '.08em',
+        fontSize:       '.95rem',
+      });
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes ng-slide  { 0%{background-position:0%} 100%{background-position:200%} }
+        @keyframes ng-blink  { 0%,49%{opacity:1} 50%,100%{opacity:.7} }
+      `;
+      document.head.appendChild(style);
+      document.body.prepend(banner);
+    }
+    banner.style.display = visible ? 'block' : 'none';
+  }
+
+  /* ── Mute toggle (persists until next page load) ──────────────── */
+  let _muted = false;
+  window._ngMuteBuzzer = function () {
+    _muted = true;
+    stopBuzzer();
+    showBuzzerBanner(false);
+  };
+
+  /* ── Poll /api/alert_state every 1.5 s ───────────────────────── */
+  // Resume AudioContext on first user interaction (browser policy)
+  document.addEventListener('click', () => {
+    if (_ctx && _ctx.state === 'suspended') _ctx.resume();
+  }, { once: true });
+
+  setInterval(async function () {
+    if (_muted) return;
+    try {
+      const res  = await fetch('/api/alert_state');
+      const data = await res.json();
+      if (data.intruder) {
+        startBuzzer();
+      } else {
+        stopBuzzer();
+        _muted = false;   // auto-unmute when threat clears
+      }
+    } catch (e) { /* portal offline */ }
+  }, 1500);
+
+})();
+</script>
+<!-- ═══════════════════════════════════════════════════════════════ -->

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Access Logs{% endblock %}
+{% block page_title %}Access Logs{% endblock %}
+{% block page_sub %}Entry and exit event history{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">Events ({{ total }} total)</div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr>
+        <th>#</th><th>Person</th><th>Status</th><th>Camera</th><th>Entry Time</th><th>Exit Time</th><th>Snapshot</th>
+      </tr></thead>
+      <tbody>
+      {% for e in events %}
+      <tr>
+        <td style="font-family:var(--mono);color:var(--text2);font-size:11px">{{ e.id }}</td>
+        <td style="font-weight:600;color:var(--white)">{{ e.person_name }}</td>
+        <td>
+          {% if e.status == 'AUTHORIZED' %}
+            <span class="badge badge-green">AUTH</span>
+          {% else %}
+            <span class="badge badge-red">INTRUDER</span>
+          {% endif %}
+        </td>
+        <td style="font-size:12px;color:var(--text2)">{{ e.camera_label or '—' }}</td>
+        <td style="font-family:var(--mono);font-size:11px">{{ e.entry_time }}</td>
+        <td style="font-family:var(--mono);font-size:11px">{{ e.exit_time or '—' }}</td>
+        <td>
+          {% if e.snapshot %}
+            {% set snap_file = e.snapshot.replace('\\', '/').split('/')[-1] %}
+            <a href="{{ url_for('snapshot_img', filename=snap_file) }}" target="_blank"
+               title="Click to view full size">
+              <img src="{{ url_for('snapshot_img', filename=snap_file) }}"
+                   alt="snapshot"
+                   style="width:72px;height:48px;object-fit:cover;border-radius:5px;
+                          border:1px solid var(--border2);vertical-align:middle;
+                          transition:transform .15s;"
+                   onmouseover="this.style.transform='scale(1.08)'"
+                   onmouseout="this.style.transform='scale(1)'">
+            </a>
+          {% else %}
+            <span style="color:var(--text3);font-size:11px">—</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="7" style="text-align:center;color:var(--text2);padding:30px">No events recorded yet.</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% if pages > 1 %}
+  <div class="pagination">
+    {% for p in range(1, pages+1) %}
+      {% if p == page %}
+        <span class="current">{{ p }}</span>
+      {% else %}
+        <a href="?page={{ p }}">{{ p }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

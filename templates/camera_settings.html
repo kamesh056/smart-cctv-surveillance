@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block title %}Camera Settings{% endblock %}
+{% block page_title %}Camera Settings{% endblock %}
+{% block page_sub %}Switch between laptop webcam and IP camera{% endblock %}
+
+{% block content %}
+<div style="max-width:600px">
+  <div class="card">
+    <div class="card-title">Camera Source</div>
+    <form method="POST">
+      <div class="form-group">
+        <label class="form-label">Camera Type</label>
+        <select class="form-select" name="source" id="sourceSelect"
+                onchange="toggleSource(this.value)">
+          <option value="webcam"
+            {% if cfg.camera.source == 'webcam' %}selected{% endif %}>
+            💻 Laptop / USB Webcam
+          </option>
+          <option value="rtsp"
+            {% if cfg.camera.source == 'rtsp' %}selected{% endif %}>
+            📡 IP Camera (RTSP)
+          </option>
+          <option value="http"
+            {% if cfg.camera.source == 'http' %}selected{% endif %}>
+            📱 IP Webcam App (HTTP/MJPEG)
+          </option>
+        </select>
+        <div class="form-hint">
+          Use <strong>Webcam</strong> for development/testing.
+          Use <strong>IP Camera</strong> or <strong>IP Webcam App</strong> when deploying on-site.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Camera Label / Name</label>
+        <input class="form-input" type="text" name="label"
+               value="{{ cfg.camera.label }}"
+               placeholder="e.g. Main Entrance, Office Door">
+        <div class="form-hint">This label appears in alerts and logs.</div>
+      </div>
+
+      <!-- URL field — shown for both rtsp and http -->
+      <div id="urlSection"
+           style="{% if cfg.camera.source not in ('rtsp', 'http') %}display:none{% endif %}">
+        <div class="form-group">
+          <label class="form-label" id="urlLabel">Stream URL</label>
+          <input class="form-input" type="text" name="rtsp_url" id="urlInput"
+                 value="{{ cfg.camera.rtsp_url }}"
+                 placeholder="rtsp://admin:password@192.168.1.64:554/Streaming/Channels/101">
+          <div class="form-hint" id="urlHint">
+            Find your camera's RTSP URL in its mobile app or admin panel.<br>
+            Test it in VLC: Media → Open Network Stream → paste URL.
+          </div>
+        </div>
+
+        <!-- Reference table -->
+        <div style="background:var(--surface2);border:1px solid var(--border);
+                    border-radius:8px;padding:16px;margin-bottom:20px">
+          <div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:8px">
+            📋 Common URL Formats
+          </div>
+          <table style="font-size:11px;font-family:var(--mono);width:100%;border-collapse:collapse">
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:6px 8px;color:var(--accent);font-weight:700">IP Webcam (Android)</td>
+              <td style="padding:6px 8px;color:var(--dim)">http://192.168.x.x:8080/video</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:6px 8px;color:var(--accent);font-weight:700">Hikvision</td>
+              <td style="padding:6px 8px;color:var(--dim)">rtsp://admin:pass@IP:554/Streaming/Channels/101</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:6px 8px;color:var(--accent);font-weight:700">Dahua</td>
+              <td style="padding:6px 8px;color:var(--dim)">rtsp://admin:pass@IP:554/cam/realmonitor?channel=1&subtype=0</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border)">
+              <td style="padding:6px 8px;color:var(--accent);font-weight:700">TP-Link Tapo</td>
+              <td style="padding:6px 8px;color:var(--dim)">rtsp://user:pass@IP:554/stream1</td>
+            </tr>
+            <tr>
+              <td style="padding:6px 8px;color:var(--accent);font-weight:700">Reolink</td>
+              <td style="padding:6px 8px;color:var(--dim)">rtsp://admin:pass@IP:554//h264Preview_01_main</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px">
+        <button type="submit" class="btn btn-primary">💾 Save Settings</button>
+        <a href="{{ url_for('dashboard') }}" class="btn btn-ghost">Cancel</a>
+      </div>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Restart Required</div>
+    <p style="font-size:13px;color:var(--dim);line-height:1.7">
+      After changing camera settings, restart
+      <code style="background:var(--surface2);padding:2px 6px;border-radius:4px;color:var(--accent)">portal.py</code>
+      for changes to take effect.
+    </p>
+  </div>
+</div>
+
+<script>
+function toggleSource(val) {
+  var show = (val === 'rtsp' || val === 'http');
+  document.getElementById('urlSection').style.display = show ? 'block' : 'none';
+  if (show) {
+    var isHttp = (val === 'http');
+    document.getElementById('urlLabel').textContent   = isHttp ? 'HTTP Stream URL' : 'RTSP URL';
+    document.getElementById('urlInput').placeholder   = isHttp
+      ? 'http://192.168.x.x:8080/video'
+      : 'rtsp://admin:password@192.168.1.64:554/Streaming/Channels/101';
+    document.getElementById('urlHint').innerHTML = isHttp
+      ? 'Open the <strong>IP Webcam</strong> app on your phone, start the server, and paste the URL shown there.'
+      : 'Find your camera\'s RTSP URL in its mobile app or admin panel.<br>Test it in VLC: Media → Open Network Stream → paste URL.';
+  }
+}
+// Set correct state on page load
+toggleSource(document.getElementById('sourceSelect').value);
+</script>
+{% endblock %}

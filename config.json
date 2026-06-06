@@ -1,0 +1,62 @@
+{
+  "camera": {
+    "source": "webcam",
+    "label": "Main Camera",
+    "rtsp_url": "rtsp://admin:password@192.168.1.64:554/Streaming/Channels/101",
+    "reconnect_attempts": 5
+  },
+  "cameras": [
+    {
+      "id": "cam_hikvision_01",
+      "label": "Pintu sir room",
+      "source": "rtsp",
+      "rtsp_url": "rtsp://admin:Jpl%402199@10.108.40.84:554/Streaming/Channels/101",
+      "reconnect_attempts": 5,
+      "location_name": "Main Entrance",
+      "floor": "Ground",
+      "building": "Block A",
+      "location_lat": null,
+      "location_lng": null
+    }
+    {
+      "id": "cam1780739595",
+      "label": "Main Camera",
+      "source": "webcam",
+      "rtsp_url": "",
+      "reconnect_attempts": 5,
+      "location_name": "",
+      "floor": "",
+      "building": "",
+      "location_lat": null,
+      "location_lng": null
+    }
+  ],
+  "recognition": {
+    "tolerance": 0.5,
+    "model": "hog",
+    "upsample": 1,
+    "scale_factor": 1.0,
+    "min_face_height_ratio": 0.04,
+    "min_distance_gap": 0.07
+  },
+  "alerts": {
+    "admin_email": "youremail@gmail.com",
+    "smtp_server": "smtp.gmail.com",
+    "smtp_port": 587
+  },
+  "portal": {
+    "host": "0.0.0.0",
+    "port": 5000,
+    "secret_key": "jpladmin",
+    "admin_email": "admin@jindalpower.com",
+    "admin_password": "admin@12345"
+  },
+  "mysql": {
+    "host": "localhost",
+    "port": 3306,
+    "user": "neuralguard",
+    "password": "Jpl@1234",
+    "database": "neuralguard",
+    "pool_size": 10
+  }
+}

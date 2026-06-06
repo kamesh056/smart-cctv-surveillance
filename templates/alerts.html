@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Alerts{% endblock %}
+{% block page_title %}Intrusion Alerts{% endblock %}
+{% block page_sub %}Real-time unauthorized access notifications{% endblock %}
+
+{% block content %}
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+  <div style="font-size:13px;color:var(--text2)">
+    Showing <strong style="color:var(--white)">{{ alerts|length }}</strong> recent alert(s)
+  </div>
+  {% if alerts %}
+  <form method="POST" action="{{ url_for('clear_alerts') }}"
+        onsubmit="return confirm('Clear all alerts?')">
+    <button class="btn btn-danger btn-sm">🗑 Clear All</button>
+  </form>
+  {% endif %}
+</div>
+
+{% if not alerts %}
+<div class="card" style="text-align:center;padding:48px 24px">
+  <div style="font-size:3rem;margin-bottom:12px">✅</div>
+  <div style="font-size:1.1rem;font-weight:700;color:var(--white);margin-bottom:6px">No Alerts</div>
+  <div style="color:var(--text2);font-size:13px">All clear — no intrusions have been detected.</div>
+</div>
+{% else %}
+<div style="display:flex;flex-direction:column;gap:14px">
+  {% for a in alerts %}
+  <div class="card" style="border-left:4px solid var(--accent2);padding:18px 20px">
+    <div style="display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap">
+
+      <!-- Snapshot thumbnail -->
+      {% set snap_file = none %}
+      {% if a.snapshot %}
+        {% set snap_file = a.snapshot | replace('\\', '/') %}
+        {% set snap_file = snap_file.split('/')[-1] %}
+      {% endif %}
+      {% if snap_file %}
+      <a href="{{ url_for('snapshot_img', filename=snap_file) }}"
+         target="_blank" style="flex-shrink:0;display:block;position:relative;">
+        <img src="{{ url_for('snapshot_img', filename=snap_file) }}"
+             alt="Snapshot"
+             style="width:140px;height:95px;object-fit:cover;border-radius:8px;
+                    border:2px solid var(--accent2);display:block;"
+             onerror="this.parentElement.innerHTML='<div style=\'width:140px;height:95px;background:var(--surface2);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:1.8rem;\'>📷</div>'">
+        <div style="position:absolute;bottom:4px;left:4px;
+                    background:rgba(0,0,0,.65);border-radius:4px;
+                    padding:1px 6px;font-size:9px;color:#fff;font-family:var(--mono);">
+          VIEW
+        </div>
+      </a>
+      {% else %}
+      <div style="width:140px;height:95px;background:var(--surface2);border-radius:8px;
+                  display:flex;flex-direction:column;align-items:center;justify-content:center;
+                  color:var(--text3);font-size:1.5rem;flex-shrink:0;gap:4px;">
+        📷
+        <span style="font-size:9px;color:var(--text3);font-family:var(--mono);">NO SNAPSHOT</span>
+      </div>
+      {% endif %}
+
+      <!-- Alert info -->
+      <div style="flex:1;min-width:0">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap">
+          <span class="badge badge-red">🚨 UNAUTHORIZED</span>
+          {% if not a.read %}
+          <span class="badge badge-amber">NEW</span>
+          {% endif %}
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:6px 20px;font-size:13px">
+          <div>
+            <span style="color:var(--text3);font-size:11px;font-family:var(--mono);text-transform:uppercase">
+              Time
+            </span><br>
+            <span style="color:var(--white);font-weight:600">{{ a.ts }}</span>
+          </div>
+          <div>
+            <span style="color:var(--text3);font-size:11px;font-family:var(--mono);text-transform:uppercase">
+              Camera
+            </span><br>
+            <span style="color:var(--white);font-weight:600">{{ a.camera }}</span>
+          </div>
+          {% if a.confidence %}
+          <div>
+            <span style="color:var(--text3);font-size:11px;font-family:var(--mono);text-transform:uppercase">
+              Confidence
+            </span><br>
+            <span style="color:var(--accent2);font-weight:600">{{ '%.1f'|format(a.confidence*100) }}%</span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

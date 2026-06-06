@@ -1,0 +1,268 @@
+{% extends "base.html" %}
+{% block title %}Enroll Person — NeuralGuard{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h2>Enroll New Person</h2>
+  <a href="{{ url_for('persons') }}" class="btn btn-secondary">← Back</a>
+</div>
+
+<!-- Tab switcher -->
+<div class="card" style="margin-bottom:0;">
+  <div style="display:flex; gap:0; border-bottom:2px solid #2a2a3a;">
+    <button class="enroll-tab active" id="tab-record" onclick="switchTab('record')">
+      🎥 Record from Webcam
+    </button>
+    <button class="enroll-tab" id="tab-upload" onclick="switchTab('upload')">
+      📁 Upload Video File
+    </button>
+  </div>
+
+  <!-- ── RECORD TAB ──────────────────────────────────────────────────── -->
+  <div id="pane-record" class="enroll-pane">
+    <p style="color:#aaa; margin-bottom:1.2rem;">
+      Fill in the details below, then record a 5–10 second video clearly showing the person's face from multiple angles.
+    </p>
+
+    <div class="enroll-layout">
+      <!-- Left: form fields -->
+      <div class="enroll-fields">
+        <div class="form-group">
+          <label>Full Name <span style="color:#e55;">*</span></label>
+          <input type="text" id="rec-name" placeholder="e.g. Ayush Sharma" required>
+        </div>
+        <div class="form-group">
+          <label>Role / Department</label>
+          <input type="text" id="rec-role" placeholder="e.g. Engineer">
+        </div>
+        <div class="form-group">
+          <label>Contact</label>
+          <input type="text" id="rec-contact" placeholder="Phone or email">
+        </div>
+
+        <div style="margin-top:1.5rem;">
+          <button id="btn-start-rec" class="btn btn-primary" onclick="startRecording()">⏺ Start Recording</button>
+          <button id="btn-stop-rec"  class="btn btn-danger"  onclick="stopRecording()"  style="display:none;">⏹ Stop &amp; Save</button>
+        </div>
+
+        <div id="rec-status" style="margin-top:1rem; color:#aaa;"></div>
+
+        <!-- Preview after recording -->
+        <div id="rec-preview-wrap" style="display:none; margin-top:1rem;">
+          <p style="color:#7dea7d; margin-bottom:.5rem;">✅ Recording complete! Review then click Enroll.</p>
+          <video id="rec-preview" controls style="width:100%; border-radius:8px; max-height:180px;"></video>
+          <div style="margin-top:1rem; display:flex; gap:.8rem;">
+            <button class="btn btn-success" onclick="submitRecording()">✔ Enroll Person</button>
+            <button class="btn btn-secondary" onclick="resetRecording()">↺ Re-record</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: live webcam preview -->
+      <div class="enroll-cam">
+        <div style="position:relative;">
+          <img id="rec-live" src="{{ url_for('enroll_feed') }}"
+               style="width:100%; border-radius:8px; display:block;" alt="Live feed">
+          <div id="rec-indicator" style="display:none; position:absolute; top:10px; right:10px;
+               background:#e00; color:#fff; padding:4px 10px; border-radius:20px;
+               font-size:.75rem; font-weight:700; animation: blink 1s infinite;">● REC</div>
+        </div>
+        <p style="color:#666; font-size:.78rem; margin-top:.5rem; text-align:center;">
+          Live preview — face the camera directly, then tilt slightly left/right
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── UPLOAD TAB ──────────────────────────────────────────────────── -->
+  <div id="pane-upload" class="enroll-pane" style="display:none;">
+    <p style="color:#aaa; margin-bottom:1.2rem;">
+      Upload an existing video (mp4, mov, avi, webm, mkv). The video should show the person's face clearly for at least 5 seconds.
+    </p>
+
+    <form method="POST" action="{{ url_for('add_person') }}" enctype="multipart/form-data">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Full Name <span style="color:#e55;">*</span></label>
+          <input type="text" name="name" placeholder="e.g. Ayush Sharma" required>
+        </div>
+        <div class="form-group">
+          <label>Role / Department</label>
+          <input type="text" name="role" placeholder="e.g. Engineer">
+        </div>
+        <div class="form-group">
+          <label>Contact</label>
+          <input type="text" name="contact" placeholder="Phone or email">
+        </div>
+        <div class="form-group">
+          <label>Enrollment Video <span style="color:#e55;">*</span></label>
+          <input type="file" name="video" accept="video/*" required>
+          <small style="color:#666;">mp4, mov, avi, webm, mkv</small>
+        </div>
+      </div>
+      <div style="margin-top:1.5rem;">
+        <button type="submit" class="btn btn-success">📥 Enroll Person</button>
+        <a href="{{ url_for('persons') }}" class="btn btn-secondary">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ── Styles ──────────────────────────────────────────────────────────── -->
+<style>
+.enroll-tab {
+  padding: .75rem 1.8rem;
+  background: transparent;
+  border: none;
+  color: #888;
+  font-size: .9rem;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color .2s, border-color .2s;
+}
+.enroll-tab.active {
+  color: #5b8dee;
+  border-bottom-color: #5b8dee;
+}
+.enroll-pane { padding: 1.8rem; }
+.enroll-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+@media (max-width: 700px) {
+  .enroll-layout { grid-template-columns: 1fr; }
+  .enroll-cam { order: -1; }
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem;
+}
+@media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }
+.form-group { display: flex; flex-direction: column; gap: .35rem; }
+.form-group label { font-size: .8rem; color: #aaa; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; }
+.form-group input[type=text],
+.form-group input[type=file] {
+  background: #1a1a2a;
+  border: 1px solid #2a2a3a;
+  border-radius: 6px;
+  color: #fff;
+  padding: .6rem .8rem;
+  font-size: .9rem;
+  outline: none;
+  transition: border-color .2s;
+}
+.form-group input:focus { border-color: #5b8dee; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+</style>
+
+<!-- ── MediaRecorder JS ────────────────────────────────────────────────── -->
+<script>
+let mediaRecorder = null;
+let recordedChunks = [];
+
+function switchTab(tab) {
+  document.getElementById('pane-record').style.display = tab === 'record' ? '' : 'none';
+  document.getElementById('pane-upload').style.display = tab === 'upload' ? '' : 'none';
+  document.getElementById('tab-record').classList.toggle('active', tab === 'record');
+  document.getElementById('tab-upload').classList.toggle('active', tab === 'upload');
+  // Stop live feed img when on upload tab to free bandwidth
+  const liveImg = document.getElementById('rec-live');
+  if (liveImg) liveImg.style.display = tab === 'record' ? '' : 'none';
+}
+
+function setStatus(msg, color) {
+  const el = document.getElementById('rec-status');
+  el.textContent = msg;
+  el.style.color = color || '#aaa';
+}
+
+async function startRecording() {
+  const name = document.getElementById('rec-name').value.trim();
+  if (!name) { alert('Please enter the person\'s name first.'); return; }
+
+  recordedChunks = [];
+  setStatus('Requesting camera access...', '#aaa');
+
+  let stream;
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+  } catch(e) {
+    setStatus('Camera access denied. Allow camera permission and try again.', '#e55');
+    return;
+  }
+
+  // Show REC indicator, hide preview
+  document.getElementById('rec-indicator').style.display = 'block';
+  document.getElementById('rec-preview-wrap').style.display = 'none';
+  document.getElementById('btn-start-rec').style.display = 'none';
+  document.getElementById('btn-stop-rec').style.display = '';
+
+  // Pick best supported format
+  const mimeType = ['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm','video/mp4']
+                    .find(t => MediaRecorder.isTypeSupported(t)) || '';
+
+  mediaRecorder = new MediaRecorder(stream, mimeType ? { mimeType } : {});
+  mediaRecorder.ondataavailable = e => { if (e.data.size > 0) recordedChunks.push(e.data); };
+  mediaRecorder.onstop = () => {
+    stream.getTracks().forEach(t => t.stop());
+    document.getElementById('rec-indicator').style.display = 'none';
+    const blob = new Blob(recordedChunks, { type: mimeType || 'video/webm' });
+    const url  = URL.createObjectURL(blob);
+    document.getElementById('rec-preview').src = url;
+    document.getElementById('rec-preview-wrap').style.display = '';
+    setStatus(`Recorded ${(blob.size/1024).toFixed(0)} KB`, '#7dea7d');
+    window._recordedBlob = blob;
+  };
+
+  mediaRecorder.start(200);   // collect every 200ms
+  setStatus('Recording... move your face slowly left/right/up/down.', '#f0a500');
+}
+
+function stopRecording() {
+  if (mediaRecorder && mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+  document.getElementById('btn-stop-rec').style.display = 'none';
+  document.getElementById('btn-start-rec').style.display = '';
+}
+
+function resetRecording() {
+  document.getElementById('rec-preview-wrap').style.display = 'none';
+  window._recordedBlob = null;
+  setStatus('');
+}
+
+async function submitRecording() {
+  const blob    = window._recordedBlob;
+  const name    = document.getElementById('rec-name').value.trim();
+  const role    = document.getElementById('rec-role').value.trim();
+  const contact = document.getElementById('rec-contact').value.trim();
+
+  if (!blob)  { alert('No recording found. Please record first.'); return; }
+  if (!name)  { alert('Name is required.'); return; }
+
+  setStatus('Uploading and encoding... please wait.', '#5b8dee');
+
+  const fd = new FormData();
+  fd.append('name',    name);
+  fd.append('role',    role);
+  fd.append('contact', contact);
+  fd.append('video',   blob, 'enrollment.mp4');
+
+  try {
+    const res  = await fetch("{{ url_for('save_recorded') }}", { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.ok) {
+      setStatus(`✅ ${data.name} enrolled! Encoding running in background...`, '#7dea7d');
+      setTimeout(() => { window.location = "{{ url_for('persons') }}"; }, 1500);
+    } else {
+      setStatus('Error: ' + data.error, '#e55');
+    }
+  } catch(e) {
+    setStatus('Upload failed: ' + e.message, '#e55');
+  }
+}
+</script>
+{% endblock %}

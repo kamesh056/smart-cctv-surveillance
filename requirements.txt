@@ -1,0 +1,8 @@
+opencv-python==4.8.1.78
+face-recognition
+numpy
+python-dotenv
+flask
+pyserial
+pillow
+mysql-connector-python

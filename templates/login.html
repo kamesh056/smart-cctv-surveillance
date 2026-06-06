@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jindal Power — Security Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ══ DARK THEME (default) ══ */
+  :root, [data-theme="dark"] {
+    --bg-login:      #050507;
+    --panel:         #111116;
+    --panel2:        #18181e;
+    --border:        #242430;
+    --border2:       #2e2e3a;
+    --text:          #e8e8ec;
+    --text2:         #a0a0b0;
+    --muted:         #60607a;
+    --subtle:        #32323e;
+    --input-bg:      #0e0e13;
+    --input-bg-f:    #141419;
+    --card-bg:       rgba(12,12,18,0.82);
+    --card-border:   rgba(255,255,255,0.07);
+    --sys-border:    #1e1e28;
+    --flash-err-bg:  rgba(200,50,50,0.09);
+    --flash-ok-bg:   rgba(58,140,63,0.09);
+    --notice-bg:     rgba(58,140,63,0.06);
+    --notice-bdr:    rgba(58,140,63,0.16);
+    --notice-color:  #7a8a7a;
+    --toggle-bg:     rgba(10,10,15,0.75);
+    --toggle-border: rgba(255,255,255,0.1);
+    --toggle-hover:  rgba(255,255,255,0.06);
+    --photo-bright:  brightness(.38) saturate(.7);
+  }
+
+  /* ══ LIGHT THEME ══ */
+  [data-theme="light"] {
+    --bg-login:      #f0f2f5;
+    --panel:         rgba(255,255,255,0.95);
+    --panel2:        rgba(248,249,252,0.98);
+    --border:        #dde0e8;
+    --border2:       #c8ccd6;
+    --text:          #1a1a2e;
+    --text2:         #4a4a60;
+    --muted:         #7a7a90;
+    --subtle:        #9090a8;
+    --input-bg:      #ffffff;
+    --input-bg-f:    #f8f9ff;
+    --card-bg:       rgba(255,255,255,0.88);
+    --card-border:   rgba(0,0,0,0.08);
+    --sys-border:    #e0e3ec;
+    --flash-err-bg:  rgba(200,50,50,0.06);
+    --flash-ok-bg:   rgba(58,140,63,0.07);
+    --notice-bg:     rgba(58,140,63,0.05);
+    --notice-bdr:    rgba(58,140,63,0.18);
+    --notice-color:  #5a6a5a;
+    --toggle-bg:     rgba(255,255,255,0.8);
+    --toggle-border: rgba(0,0,0,0.15);
+    --toggle-hover:  rgba(0,0,0,0.04);
+    --photo-bright:  brightness(.5) saturate(.75);
+  }
+
+  /* Shared brand colours */
+  :root {
+    --orange:  #e8610a;
+    --orange2: #f07520;
+    --green:   #3a8c3f;
+    --green2:  #4aac50;
+  }
+
+  html, body {
+    height: 100%; font-family: 'Barlow', sans-serif; overflow: hidden;
+    transition: background .3s, color .3s;
+  }
+
+  /* ── Accent bar ── */
+  .accent-bar {
+    position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 30;
+    background: linear-gradient(90deg, var(--green) 0%, var(--green2) 20%, var(--orange) 50%, var(--green2) 80%, var(--green) 100%);
+  }
+
+  /* ── Theme toggle button (top-right) ── */
+  .theme-btn {
+    position: fixed; top: 14px; right: 18px; z-index: 40;
+    display: flex; align-items: center; gap: 7px;
+    padding: 6px 12px 6px 8px;
+    background: var(--toggle-bg);
+    border: 1px solid var(--toggle-border);
+    border-radius: 24px;
+    cursor: pointer; color: var(--text2);
+    font-family: 'Barlow', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: .04em;
+    backdrop-filter: blur(12px);
+    transition: background .2s, border-color .2s, color .2s, transform .15s;
+    user-select: none;
+  }
+  .theme-btn:hover {
+    background: var(--toggle-hover);
+    border-color: var(--orange);
+    color: var(--orange);
+    transform: scale(1.03);
+  }
+  /* pill track */
+  .theme-track {
+    width: 30px; height: 17px;
+    background: var(--border2); border-radius: 20px;
+    position: relative; flex-shrink: 0;
+    transition: background .25s;
+  }
+  [data-theme="dark"] .theme-track { background: var(--orange); }
+  .theme-knob {
+    position: absolute; top: 2.5px; left: 2.5px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.3);
+    transition: transform .25s cubic-bezier(.4,0,.2,1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 7px;
+  }
+  [data-theme="dark"] .theme-knob { transform: translateX(13px); }
+  .theme-knob::after { content: '☀'; color: #f59e0b; }
+  [data-theme="dark"] .theme-knob::after { content: '☾'; color: #c4b5fd; }
+  .theme-label { font-size: 11px; }
+
+  /* ── Page grid ── */
+  .page {
+    position: relative; z-index: 2; height: 100vh;
+    display: grid; grid-template-columns: 1.15fr 0.85fr;
+    transition: none;
+  }
+  @media (max-width: 820px) {
+    .page { grid-template-columns: 1fr; }
+    .brand-side { display: none; }
+  }
+
+  /* ════ BRAND SIDE ════ */
+  .brand-side {
+    position: relative; overflow: hidden;
+    border-right: 1px solid rgba(255,255,255,.06);
+  }
+  .brand-photo {
+    position: absolute; inset: 0;
+    background-image: url("{{ url_for('static', filename='images/bgg.jpg') }}");
+    background-size: cover; background-position: center 45%;
+    filter: var(--photo-bright);
+    transform: scale(1.04);
+    transition: transform 14s ease, filter .4s;
+  }
+  .brand-side:hover .brand-photo { transform: scale(1.08); }
+  .brand-overlay {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(0,0,0,.85) 0%, rgba(0,0,0,.1) 28%, rgba(0,0,0,.1) 58%, rgba(0,0,0,.9) 100%),
+      linear-gradient(to right,  rgba(0,0,0,.5) 0%, rgba(0,0,0,.0) 55%, rgba(0,0,0,.25) 100%);
+  }
+  .brand-edge {
+    position: absolute; top: 0; right: 0; bottom: 0; width: 2px;
+    background: linear-gradient(to bottom, transparent, rgba(232,97,10,.4) 40%, rgba(232,97,10,.4) 60%, transparent);
+  }
+  .brand-content {
+    position: absolute; inset: 0; z-index: 3;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 2.4rem 3rem;
+  }
+  .brand-logo { display: flex; align-items: center; gap: 1rem; }
+  .brand-logo img {
+    height: 40px;
+    filter: brightness(1.1) drop-shadow(0 2px 10px rgba(0,0,0,.7));
+  }
+  .brand-tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .62rem; font-weight: 600;
+    letter-spacing: .22em; text-transform: uppercase;
+    color: rgba(255,255,255,.4);
+    border-left: 2px solid var(--orange);
+    padding-left: .7rem; line-height: 1.5;
+  }
+  .brand-headline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.5rem, 3.8vw, 3.5rem);
+    font-weight: 800; line-height: 1.0;
+    color: #fff; text-transform: uppercase;
+    letter-spacing: .04em; margin-bottom: .5rem;
+    text-shadow: 0 2px 24px rgba(0,0,0,.7);
+  }
+  .brand-headline .hl-o { color: var(--orange); }
+  .brand-headline .hl-g { color: var(--green2); }
+  .brand-sub { font-size: .8rem; color: rgba(255,255,255,.38); margin-bottom: 1.7rem; font-weight: 300; }
+  .stat-row {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 1px; background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 4px; overflow: hidden;
+    backdrop-filter: blur(8px);
+  }
+  .stat { background: rgba(8,8,12,.6); padding: .9rem .8rem; text-align: center; }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem; font-weight: 800; color: var(--orange); line-height: 1; display: block;
+  }
+  .stat-num small { font-size: .75rem; }
+  .stat-lbl { font-size: .58rem; color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: .1em; margin-top: .26rem; display: block; }
+  .photo-credit { position: absolute; bottom: 1rem; right: 1.4rem; z-index: 4; font-size: .57rem; color: rgba(255,255,255,.18); letter-spacing: .07em; text-transform: uppercase; }
+
+  /* ════ LOGIN SIDE ════ */
+  .login-side {
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 2rem 2.5rem;
+    position: relative; overflow: hidden;
+    background: var(--bg-login);
+    transition: background .35s;
+  }
+
+  /* Real plant photo as blurred bg on login side */
+  .login-side::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: url("{{ url_for('static', filename='images/bgg.jpg') }}");
+    background-size: cover; background-position: center 55%;
+    filter: blur(18px) brightness(.18) saturate(.5);
+    transform: scale(1.08);
+    transition: filter .4s;
+    pointer-events: none; z-index: 0;
+  }
+  [data-theme="light"] .login-side::before {
+    filter: blur(20px) brightness(.55) saturate(.55);
+  }
+
+  /* Subtle vignette over the blurred bg */
+  .login-side::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,.55) 100%);
+    pointer-events: none; z-index: 0;
+  }
+  [data-theme="light"] .login-side::after {
+    background: radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,.25) 100%);
+  }
+
+  /* Frosted glass card */
+  .login-box {
+    width: 100%; max-width: 368px;
+    position: relative; z-index: 2;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 2.2rem 2rem;
+    backdrop-filter: blur(24px) saturate(1.4);
+    box-shadow:
+      0 24px 60px rgba(0,0,0,.5),
+      0 1px 0 rgba(255,255,255,.06) inset;
+    animation: slideIn .5s cubic-bezier(.22,1,.36,1) both;
+  }
+  [data-theme="light"] .login-box {
+    box-shadow: 0 20px 50px rgba(0,0,0,.22), 0 1px 0 rgba(255,255,255,.8) inset;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(22px) scale(.98); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* Logo inside card */
+  .card-logo {
+    display: flex; align-items: center; gap: .75rem;
+    margin-bottom: 1.6rem;
+    padding-bottom: 1.3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .card-logo img { height: 30px; }
+  .card-logo-text {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .6rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .18em;
+    color: var(--muted); line-height: 1.4;
+  }
+
+  /* Mobile logo (hidden on desktop) */
+  .mobile-logo { display: none; }
+
+  /* Header */
+  .login-header { margin-bottom: 1.5rem; }
+  .login-eyebrow {
+    font-size: .6rem; font-weight: 600; color: var(--orange);
+    text-transform: uppercase; letter-spacing: .22em;
+    margin-bottom: .5rem;
+    display: flex; align-items: center; gap: .5rem;
+  }
+  .login-eyebrow::before {
+    content: ''; display: inline-block; width: 14px; height: 2px; background: var(--orange);
+  }
+  .login-header h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.85rem; font-weight: 800;
+    color: var(--text); letter-spacing: .04em;
+    text-transform: uppercase; line-height: 1.05;
+  }
+  .login-header p { font-size: .75rem; color: var(--muted); margin-top: .32rem; }
+
+  /* Flash */
+  .flash {
+    padding: .65rem .9rem; border-radius: 5px;
+    margin-bottom: 1rem; font-size: .78rem;
+    display: flex; align-items: center; gap: .5rem; border-left: 3px solid;
+  }
+  .flash.error   { background: var(--flash-err-bg); border-color: #c83232; color: #f09090; }
+  .flash.success { background: var(--flash-ok-bg);  border-color: var(--green); color: #80c483; }
+  .flash.info    { background: rgba(232,97,10,.08);  border-color: var(--orange); color: #f0b490; }
+
+  /* Security notice */
+  .security-notice {
+    display: flex; align-items: center; gap: .45rem;
+    padding: .6rem .8rem;
+    background: var(--notice-bg); border: 1px solid var(--notice-bdr);
+    border-radius: 5px; margin-bottom: 1.2rem;
+    font-size: .69rem; color: var(--notice-color);
+  }
+  .security-notice .shield { color: var(--green2); font-size: .8rem; flex-shrink: 0; }
+
+  /* Fields */
+  .field { margin-bottom: 1rem; }
+  .field label {
+    display: block; font-size: .6rem; font-weight: 600;
+    color: var(--muted); text-transform: uppercase; letter-spacing: .14em; margin-bottom: .4rem;
+  }
+  .input-wrap { position: relative; }
+  .input-wrap .icon {
+    position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+    color: var(--subtle); font-size: .8rem; pointer-events: none; transition: color .2s;
+  }
+  .field input {
+    width: 100%; background: var(--input-bg); border: 1px solid var(--border2);
+    border-radius: 6px; padding: .74rem 1rem .74rem 2.4rem;
+    color: var(--text); font-size: .84rem; font-family: 'Barlow', sans-serif;
+    outline: none; transition: border-color .2s, box-shadow .2s, background .2s;
+  }
+  .field input:focus {
+    border-color: var(--orange); background: var(--input-bg-f);
+    box-shadow: 0 0 0 3px rgba(232,97,10,.12);
+  }
+  .input-wrap:focus-within .icon { color: var(--orange); }
+  .field input::placeholder { color: var(--subtle); }
+  .toggle-pw {
+    position: absolute; right: 9px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: var(--subtle);
+    cursor: pointer; font-size: .78rem; padding: 3px 5px;
+    border-radius: 3px; transition: color .2s;
+  }
+  .toggle-pw:hover { color: var(--orange); }
+
+  .form-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 1.4rem; font-size: .74rem;
+  }
+  .remember { display: flex; align-items: center; gap: .4rem; color: var(--muted); cursor: pointer; }
+  .remember input[type=checkbox] { accent-color: var(--orange); width: 12px; height: 12px; cursor: pointer; }
+  .forgot { color: var(--orange); text-decoration: none; font-size: .71rem; }
+  .forgot:hover { text-decoration: underline; }
+
+  /* Submit */
+  .btn-login {
+    width: 100%; padding: .8rem 1rem;
+    background: linear-gradient(135deg, var(--orange) 0%, var(--orange2) 100%);
+    border: none; border-radius: 6px;
+    color: #fff; font-size: .84rem; font-weight: 700;
+    font-family: 'Barlow Condensed', sans-serif;
+    letter-spacing: .16em; text-transform: uppercase; cursor: pointer;
+    transition: filter .2s, transform .15s, box-shadow .2s;
+    box-shadow: 0 4px 18px rgba(232,97,10,.35);
+    display: flex; align-items: center; justify-content: center; gap: .55rem;
+    position: relative; overflow: hidden;
+  }
+  .btn-login::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,.14) 0%, transparent 55%);
+  }
+  .btn-login:hover  { filter: brightness(1.1); box-shadow: 0 6px 26px rgba(232,97,10,.5); }
+  .btn-login:active { transform: scale(.99); }
+  .btn-arrow { font-size: .92rem; transition: transform .2s; }
+  .btn-login:hover .btn-arrow { transform: translateX(4px); }
+
+  /* Footer */
+  .sys-info {
+    margin-top: 1.6rem; padding-top: 1.1rem;
+    border-top: 1px solid var(--sys-border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .sys-badge {
+    display: flex; align-items: center; gap: .4rem;
+    font-size: .6rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em;
+  }
+  .sys-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--green2); box-shadow: 0 0 5px var(--green2);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+  .sys-version {
+    font-size: .58rem; color: var(--border2);
+    font-family: 'Barlow Condensed', sans-serif; letter-spacing: .1em;
+  }
+</style>
+</head>
+<body>
+
+<div class="accent-bar"></div>
+
+<!-- Theme toggle (fixed top-right) -->
+<button class="theme-btn" id="themeBtn" title="Toggle theme">
+  <div class="theme-track"><div class="theme-knob"></div></div>
+  <span class="theme-label" id="themeLabel">Dark</span>
+</button>
+
+<div class="page">
+
+  <!-- ══ BRAND SIDE ══ -->
+  <div class="brand-side">
+    <div class="brand-photo"></div>
+    <div class="brand-overlay"></div>
+    <div class="brand-edge"></div>
+    <div class="brand-content">
+      <div class="brand-logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Jindal Power">
+        <div class="brand-tagline">Security Operations<br>NeuralGuard Platform</div>
+      </div>
+      <div>
+        <div class="brand-headline">
+          Powering<br><span class="hl-o">India's</span><br><span class="hl-g">Future</span>
+        </div>
+        <div class="brand-sub">Tamnar Thermal Power Plant · Raigarh, Chhattisgarh</div>
+        <div class="stat-row">
+          <div class="stat">
+            <span class="stat-num">3.4<small>GW</small></span>
+            <span class="stat-lbl">Installed Capacity</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">24<small>/7</small></span>
+            <span class="stat-lbl">Monitoring</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">99.9<small style="font-size:.62rem">%</small></span>
+            <span class="stat-lbl">Uptime SLA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="photo-credit">Tamnar Plant · Raigarh</div>
+  </div>
+
+  <!-- ══ LOGIN SIDE ══ -->
+  <div class="login-side">
+    <div class="mobile-logo"></div>
+
+    <div class="login-box">
+      <!-- Logo inside card -->
+      <div class="card-logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Jindal Power">
+        <div class="card-logo-text">Security Operations<br>NeuralGuard v2.0</div>
+      </div>
+
+      <div class="login-header">
+        <div class="login-eyebrow">Secure Access</div>
+        <h2>Sign In to<br>Your Portal</h2>
+        <p>Authorized personnel only · Surveillance system access</p>
+      </div>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">
+            {% if category == 'error' %}⚠{% elif category == 'success' %}✓{% else %}ℹ{% endif %}
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endwith %}
+
+      <div class="security-notice">
+        <span class="shield">🛡</span>
+        <span>This system is monitored. Unauthorized access is a criminal offence.</span>
+      </div>
+
+      <form method="POST" action="{{ url_for('login') }}" autocomplete="on">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+        <div class="field">
+          <label>Employee Email</label>
+          <div class="input-wrap">
+            <input type="email" name="email" placeholder="you@jindalpower.com"
+              value="{{ request.form.get('email','') }}" required autocomplete="username">
+            <span class="icon">✉</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <div class="input-wrap">
+            <input type="password" name="password" id="pw-field"
+              placeholder="••••••••••" required autocomplete="current-password">
+            <span class="icon">🔒</span>
+            <button type="button" class="toggle-pw" onclick="togglePw()" title="Show/hide">👁</button>
+          </div>
+        </div>
+
+        <div class="form-footer">
+          <label class="remember">
+            <input type="checkbox" name="remember"> Remember this device
+          </label>
+          <a href="#" class="forgot">Reset password</a>
+        </div>
+
+        <button type="submit" class="btn-login">
+          Access Portal <span class="btn-arrow">→</span>
+        </button>
+      </form>
+
+      <div class="sys-info">
+        <div class="sys-badge"><div class="sys-dot"></div> Systems Operational</div>
+        <div class="sys-version">NeuralGuard v2.0 · JPL</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function togglePw() {
+  var f = document.getElementById('pw-field');
+  f.type = f.type === 'password' ? 'text' : 'password';
+}
+
+// Theme toggle — persists to localStorage
+(function () {
+  var html  = document.documentElement;
+  var btn   = document.getElementById('themeBtn');
+  var label = document.getElementById('themeLabel');
+  var KEY   = 'jpl-login-theme';
+
+  function apply(theme) {
+    html.setAttribute('data-theme', theme);
+    label.textContent = theme === 'dark' ? 'Dark' : 'Light';
+    try { localStorage.setItem(KEY, theme); } catch(e) {}
+  }
+
+  // Load saved preference
+  var saved = 'dark';
+  try { saved = localStorage.getItem(KEY) || 'dark'; } catch(e) {}
+  apply(saved);
+
+  btn.addEventListener('click', function () {
+    apply(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+})();
+</script>
+</body>
+</html>

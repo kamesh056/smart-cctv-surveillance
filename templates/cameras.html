@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% block title %}Live Cameras{% endblock %}
+{% block page_title %}Camera Management{% endblock %}
+{% block page_sub %}Configure and view live camera feeds{% endblock %}
+
+{% block content %}
+<!-- Add Camera -->
+<div class="card">
+  <div class="card-title">Add New Camera</div>
+  <form method="POST" action="{{ url_for('add_camera') }}" style="margin-top:16px">
+    <div class="three-col">
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label">Camera Label</label>
+        <input class="form-input" type="text" name="label" placeholder="e.g. Main Entrance" required>
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label class="form-label">Source Type</label>
+        <select class="form-select" name="source" id="addSource" onchange="toggleAddRtsp(this.value)">
+          <option value="webcam">💻 Webcam (index 0)</option>
+          <option value="1">💻 Webcam (index 1)</option>
+          <option value="rtsp">📡 IP Camera (RTSP)</option>
+          <option value="http">📱 IP Webcam App (HTTP/MJPEG)</option>
+        </select>
+      </div>
+      <div class="form-group" id="addRtspGroup" style="margin-bottom:0;display:none">
+        <label class="form-label" id="addUrlLabel">Stream URL</label>
+        <input class="form-input" type="text" name="rtsp_url" id="addUrlInput"
+               placeholder="rtsp://admin:pass@192.168.1.x:554/...">
+      </div>
+    </div>
+    <div style="margin-top:14px">
+      <button type="submit" class="btn btn-primary">➕ Add Camera</button>
+    </div>
+  </form>
+</div>
+
+<!-- Camera Grid -->
+{% if cameras %}
+<div class="card">
+  <div class="card-title">Configured Cameras ({{ cameras|length }})</div>
+  <div class="feed-grid" style="margin-top:16px">
+    {% for cam in cameras %}
+    <div class="feed-card">
+      <img src="{{ url_for('video_feed', cam_id=cam.id) }}"
+           alt="{{ cam.label }}"
+           onerror="this.style.minHeight='180px';this.alt='';this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22320%22 height=%22180%22><rect fill=%22%230d1117%22 width=%22320%22 height=%22180%22/><text fill=%22%237a8fa8%22 font-size=%2213%22 x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22>No Signal</text></svg>'">
+      <div class="feed-bar">
+        <div class="feed-label">{{ cam.label }}</div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <div class="feed-live"><div class="feed-live-dot"></div>LIVE</div>
+        </div>
+      </div>
+      <div style="padding:10px 12px;background:var(--surface);border-top:1px solid var(--border);display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <span style="font-size:10px;font-family:var(--mono);color:var(--text2)">{{ cam.source }}{% if cam.rtsp_url %} · {{ cam.rtsp_url[:35] }}{% if cam.rtsp_url|length > 35 %}…{% endif %}{% endif %}</span>
+        <div style="margin-left:auto;display:flex;gap:6px">
+          <button onclick="openEdit('{{ cam.id }}','{{ cam.label|e }}','{{ cam.source }}','{{ cam.rtsp_url|e }}')"
+                  class="btn btn-ghost btn-xs">✏ Edit</button>
+          <form method="POST" action="{{ url_for('remove_camera', cam_id=cam.id) }}"
+                onsubmit="return confirm('Remove {{ cam.label }}?')">
+            <button type="submit" class="btn btn-danger btn-xs">✕</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% else %}
+<div class="card" style="text-align:center;padding:50px;border-style:dashed">
+  <div style="font-size:36px;margin-bottom:14px">📹</div>
+  <div style="color:var(--white);font-weight:600;margin-bottom:8px">No cameras added yet</div>
+  <div style="color:var(--text2);font-size:13px">Use the form above to add your first camera.</div>
+</div>
+{% endif %}
+
+<!-- RTSP Reference -->
+<div class="card">
+  <div class="card-title">Stream URL Reference</div>
+  <div style="margin-top:14px;overflow-x:auto">
+    <table>
+      <thead><tr><th>Type / Brand</th><th>URL Format</th></tr></thead>
+      <tbody>
+        <tr><td style="color:var(--accent);font-weight:600">IP Webcam (Android)</td><td><code>http://192.168.x.x:8080/video</code></td></tr>
+        <tr><td style="color:var(--accent);font-weight:600">Hikvision</td><td><code>rtsp://admin:pass@IP:554/Streaming/Channels/101</code></td></tr>
+        <tr><td style="color:var(--accent);font-weight:600">Dahua</td><td><code>rtsp://admin:pass@IP:554/cam/realmonitor?channel=1&subtype=0</code></td></tr>
+        <tr><td style="color:var(--accent);font-weight:600">TP-Link Tapo</td><td><code>rtsp://user:pass@IP:554/stream1</code></td></tr>
+        <tr><td style="color:var(--accent);font-weight:600">Reolink</td><td><code>rtsp://admin:pass@IP:554//h264Preview_01_main</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Edit Modal -->
+<div id="editModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:999;align-items:center;justify-content:center">
+  <div style="background:var(--surface);border:1px solid var(--border2);border-radius:12px;padding:28px;width:480px;max-width:95vw">
+    <div style="font-size:16px;font-weight:700;color:var(--white);margin-bottom:20px">Edit Camera</div>
+    <form id="editForm" method="POST">
+      <div class="form-group">
+        <label class="form-label">Label</label>
+        <input class="form-input" type="text" name="label" id="editLabel" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Source</label>
+        <select class="form-select" name="source" id="editSource" onchange="toggleEditRtsp(this.value)">
+          <option value="webcam">💻 Webcam (index 0)</option>
+          <option value="1">💻 Webcam (index 1)</option>
+          <option value="rtsp">📡 RTSP IP Camera</option>
+          <option value="http">📱 IP Webcam App (HTTP/MJPEG)</option>
+        </select>
+      </div>
+      <div class="form-group" id="editRtspGroup" style="display:none">
+        <label class="form-label" id="editUrlLabel">Stream URL</label>
+        <input class="form-input" type="text" name="rtsp_url" id="editRtsp">
+      </div>
+      <div style="display:flex;gap:10px;margin-top:8px">
+        <button type="submit" class="btn btn-primary">💾 Save</button>
+        <button type="button" onclick="closeEdit()" class="btn btn-ghost">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+var HTTP_PLACEHOLDER  = 'http://192.168.x.x:8080/video';
+var RTSP_PLACEHOLDER  = 'rtsp://admin:pass@192.168.1.x:554/...';
+
+function toggleAddRtsp(v) {
+  var show = (v === 'rtsp' || v === 'http');
+  document.getElementById('addRtspGroup').style.display = show ? 'block' : 'none';
+  if (show) {
+    document.getElementById('addUrlLabel').textContent = v === 'http' ? 'HTTP Stream URL' : 'RTSP URL';
+    document.getElementById('addUrlInput').placeholder = v === 'http' ? HTTP_PLACEHOLDER : RTSP_PLACEHOLDER;
+  }
+}
+function openEdit(id, label, source, rtsp) {
+  document.getElementById('editForm').action = '/cameras/edit/' + id;
+  document.getElementById('editLabel').value  = label;
+  document.getElementById('editSource').value = source;
+  document.getElementById('editRtsp').value   = rtsp;
+  toggleEditRtsp(source);
+  document.getElementById('editModal').style.display = 'flex';
+}
+function closeEdit() { document.getElementById('editModal').style.display = 'none'; }
+function toggleEditRtsp(v) {
+  var show = (v === 'rtsp' || v === 'http');
+  document.getElementById('editRtspGroup').style.display = show ? 'block' : 'none';
+  if (show) {
+    document.getElementById('editUrlLabel').textContent = v === 'http' ? 'HTTP Stream URL' : 'RTSP URL';
+    document.getElementById('editRtsp').placeholder = v === 'http' ? HTTP_PLACEHOLDER : RTSP_PLACEHOLDER;
+  }
+}
+// init
+toggleAddRtsp(document.getElementById('addSource').value);
+</script>
+{% endblock %}

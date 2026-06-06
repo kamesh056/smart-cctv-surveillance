@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Snapshots{% endblock %}
+{% block page_title %}Intruder Snapshots{% endblock %}
+{% block page_sub %}Alert images captured during intrusion events{% endblock %}
+
+{% block content %}
+{% if snapshots %}
+<div class="snap-grid">
+  {% for s in snapshots %}
+  <div class="snap-card">
+
+    <!-- Image with overlaid timestamp -->
+    <div style="position:relative;overflow:hidden;border-radius:8px 8px 0 0;">
+      <a href="{{ url_for('snapshot_img', filename=s.name) }}" target="_blank">
+        <img src="{{ url_for('snapshot_img', filename=s.name) }}"
+             alt="{{ s.name }}" loading="lazy"
+             style="width:100%;display:block;aspect-ratio:16/9;object-fit:cover;">
+      </a>
+      <!-- Timestamp overlay at top -->
+      <div style="position:absolute;top:0;left:0;right:0;
+                  background:linear-gradient(180deg,rgba(0,0,0,.72) 0%,transparent 100%);
+                  padding:7px 10px 18px 10px;">
+        <span style="font-family:var(--mono);font-size:11px;color:#fff;font-weight:600;
+                     text-shadow:0 1px 3px rgba(0,0,0,.8);">{{ s.ts }}</span>
+      </div>
+      <!-- INTRUDER badge at bottom-left -->
+      <div style="position:absolute;bottom:8px;left:8px;">
+        <span class="badge badge-red" style="font-size:10px;padding:2px 8px;">🚨 INTRUDER</span>
+      </div>
+    </div>
+
+    <!-- Info row -->
+    <div class="snap-info" style="display:flex;align-items:center;
+         justify-content:space-between;padding:8px 12px;gap:8px;">
+      <div style="font-family:var(--mono);font-size:11px;color:var(--text2);">
+        {{ s.size }}
+      </div>
+      <a href="{{ url_for('snapshot_img', filename=s.name) }}"
+         target="_blank"
+         class="btn btn-ghost btn-xs"
+         style="font-size:10px;padding:3px 10px;">⤢ Full Size</a>
+    </div>
+
+    <!-- Delete action -->
+    <div class="snap-actions" style="padding:0 10px 10px 10px;">
+      <form method="POST" action="{{ url_for('delete_snapshot', filename=s.name) }}"
+            onsubmit="return confirm('Delete this snapshot?')">
+        <button type="submit" class="btn btn-danger btn-xs" style="width:100%">Delete</button>
+      </form>
+    </div>
+
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="card" style="text-align:center;padding:60px;border-style:dashed">
+  <div style="font-size:36px;margin-bottom:14px">📸</div>
+  <div style="color:var(--white);font-weight:600">No snapshots yet</div>
+  <div style="color:var(--text2);font-size:13px;margin-top:8px">Snapshots are saved automatically when unknown persons are detected.</div>
+</div>
+{% endif %}
+{% endblock %}
