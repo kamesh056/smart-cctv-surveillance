@@ -1,28 +1,28 @@
 {
   "camera": {
-    "source": "webcam",
-    "label": "Main Camera",
-    "rtsp_url": "rtsp://admin:password@192.168.1.64:554/Streaming/Channels/101",
+    "source": "rtsp",
+    "label": "Hikvision Main",
+    "rtsp_url": "rtsp://admin:Jpl%402199@10.108.40.129:554/Streaming/Channels/101",
     "reconnect_attempts": 5
   },
   "cameras": [
-    {
-      "id": "cam_hikvision_01",
-      "label": "Pintu sir room",
-      "source": "rtsp",
-      "rtsp_url": "rtsp://admin:Jpl%402199@10.108.40.84:554/Streaming/Channels/101",
-      "reconnect_attempts": 5,
-      "location_name": "Main Entrance",
-      "floor": "Ground",
-      "building": "Block A",
-      "location_lat": null,
-      "location_lng": null
-    }
     {
       "id": "cam1780739595",
       "label": "Main Camera",
       "source": "webcam",
       "rtsp_url": "",
+      "reconnect_attempts": 5,
+      "location_name": "",
+      "floor": "",
+      "building": "",
+      "location_lat": null,
+      "location_lng": null
+    },
+    {
+      "id": "cam1780893365",
+      "label": "IPCAM",
+      "source": "rtsp",
+      "rtsp_url": "rtsp://admin:Jpl%402199@10.108.40.129:554/Streaming/Channels/101",
       "reconnect_attempts": 5,
       "location_name": "",
       "floor": "",
@@ -58,5 +58,13 @@
     "password": "Jpl@1234",
     "database": "neuralguard",
     "pool_size": 10
+  },
+  "blockage_detection": {
+    "brightness_thresh": 15.0,
+    "variance_thresh": 20.0,
+    "edge_density_thresh": 0.002,
+    "confirm_seconds": 3.0,
+    "cooldown_seconds": 120.0,
+    "alert_on_clear": true
   }
 }

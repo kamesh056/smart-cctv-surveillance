@@ -1,0 +1,370 @@
+🚨 ENTRY  | 2026-06-04 10:58:26 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_105826.jpg
+✅ ENTRY  | 2026-06-04 10:58:26 | AUTHORIZED     | Ayush                | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 10:58:27 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+🚨 EXIT   | 2026-06-04 10:58:27 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 10:58:29 | AUTHORIZED     | Ayush                | Camera: Main Camera (webcam)
+🚨 ENTRY  | 2026-06-04 10:58:34 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_105834.jpg
+✅ EXIT   | 2026-06-04 10:58:41 | AUTHORIZED     | Ayush                | Duration: 0m 12s
+🚨 EXIT   | 2026-06-04 10:58:42 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 8s
+✅ ENTRY  | 2026-06-04 10:58:43 | AUTHORIZED     | Ayush                | Camera: Main Camera (webcam)
+🚨 ENTRY  | 2026-06-04 10:58:44 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_105844.jpg
+✅ EXIT   | 2026-06-04 10:58:46 | AUTHORIZED     | Ayush                | Duration: 0m 3s
+🚨 EXIT   | 2026-06-04 10:58:46 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 2s
+🚨 ENTRY  | 2026-06-04 10:58:48 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_105848.jpg
+🚨 EXIT   | 2026-06-04 10:58:48 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 0s
+✅ ENTRY  | 2026-06-04 10:58:51 | AUTHORIZED     | Ayush                | Camera: Main Camera (webcam)
+🚨 ENTRY  | 2026-06-04 10:58:53 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_105853.jpg
+✅ EXIT   | 2026-06-04 10:58:55 | AUTHORIZED     | Ayush                | Duration: 0m 4s
+🚨 EXIT   | 2026-06-04 10:58:56 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 3s
+🚨 ENTRY  | 2026-06-04 10:59:00 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_105900.jpg
+🚨 EXIT   | 2026-06-04 10:59:08 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 8s
+🚨 ENTRY  | 2026-06-04 10:59:10 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_105910.jpg
+🚨 EXIT   | 2026-06-04 10:59:13 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 3s
+🚨 ENTRY  | 2026-06-04 10:59:14 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_105914.jpg
+🚨 EXIT   | 2026-06-04 10:59:14 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 0s
+🚨 ENTRY  | 2026-06-04 10:59:16 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_105916.jpg
+🚨 EXIT   | 2026-06-04 10:59:17 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 10:59:22 | AUTHORIZED     | Ayush                | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 10:59:23 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 10:59:26 | AUTHORIZED     | Ayush                | Camera: Main Camera (webcam)
+🚨 ENTRY  | 2026-06-04 10:59:30 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_105930.jpg
+🚨 EXIT   | 2026-06-04 10:59:30 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 0s
+✅ EXIT   | 2026-06-04 10:59:30 | AUTHORIZED     | Ayush                | Duration: 0m 4s
+🚨 ENTRY  | 2026-06-04 11:02:32 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_110232.jpg
+🚨 EXIT   | 2026-06-04 11:02:34 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 2s
+🚨 ENTRY  | 2026-06-04 11:02:35 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_110235.jpg
+✅ ENTRY  | 2026-06-04 11:02:38 | AUTHORIZED     | Ayush                | Camera: Main Camera (webcam)
+🚨 ENTRY  | 2026-06-04 11:12:20 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111220.jpg
+🚨 EXIT   | 2026-06-04 11:12:21 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 1s
+🚨 ENTRY  | 2026-06-04 11:12:23 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111223.jpg
+🚨 EXIT   | 2026-06-04 11:12:30 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 7s
+🚨 ENTRY  | 2026-06-04 11:12:31 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111231.jpg
+🚨 EXIT   | 2026-06-04 11:12:32 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 1s
+🚨 ENTRY  | 2026-06-04 11:12:33 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111233.jpg
+🚨 EXIT   | 2026-06-04 11:12:34 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 1s
+🚨 ENTRY  | 2026-06-04 11:12:35 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111235.jpg
+🚨 EXIT   | 2026-06-04 11:12:39 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 4s
+🚨 ENTRY  | 2026-06-04 11:12:40 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111240.jpg
+🚨 EXIT   | 2026-06-04 11:12:42 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 2s
+🚨 ENTRY  | 2026-06-04 11:12:44 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111244.jpg
+🚨 EXIT   | 2026-06-04 11:12:47 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 3s
+🚨 ENTRY  | 2026-06-04 11:12:55 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111255.jpg
+🚨 EXIT   | 2026-06-04 11:12:56 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 11:12:58 | AUTHORIZED     | Yash                 | Camera: Main Camera (webcam)
+✅ ENTRY  | 2026-06-04 11:13:02 | AUTHORIZED     | Ayush                | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 11:13:03 | AUTHORIZED     | Yash                 | Duration: 0m 5s
+✅ EXIT   | 2026-06-04 11:13:03 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+🚨 ENTRY  | 2026-06-04 11:13:03 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111303.jpg
+✅ ENTRY  | 2026-06-04 11:13:04 | AUTHORIZED     | Yash                 | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 11:13:05 | AUTHORIZED     | Yash                 | Duration: 0m 1s
+🚨 EXIT   | 2026-06-04 11:13:05 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 11:13:07 | AUTHORIZED     | Yash                 | Camera: Main Camera (webcam)
+🚨 ENTRY  | 2026-06-04 11:13:12 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111312.jpg
+✅ EXIT   | 2026-06-04 11:13:14 | AUTHORIZED     | Yash                 | Duration: 0m 7s
+✅ ENTRY  | 2026-06-04 11:13:18 | AUTHORIZED     | Yash                 | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 11:13:22 | AUTHORIZED     | Yash                 | Duration: 0m 4s
+🚨 EXIT   | 2026-06-04 11:13:22 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 10s
+✅ ENTRY  | 2026-06-04 11:13:25 | AUTHORIZED     | Yash                 | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 11:13:26 | AUTHORIZED     | Yash                 | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 11:13:37 | AUTHORIZED     | Ayush                | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 11:13:38 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 11:13:39 | AUTHORIZED     | Ayush                | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 11:13:40 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 11:13:41 | AUTHORIZED     | Ayush                | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 11:13:44 | AUTHORIZED     | Ayush                | Duration: 0m 3s
+✅ ENTRY  | 2026-06-04 11:13:45 | AUTHORIZED     | Ayush                | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 11:13:46 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 11:13:56 | AUTHORIZED     | Yash                 | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 11:13:57 | AUTHORIZED     | Yash                 | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 11:14:10 | AUTHORIZED     | Yash                 | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 11:14:20 | AUTHORIZED     | Yash                 | Duration: 0m 10s
+🚨 ENTRY  | 2026-06-04 11:14:21 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111421.jpg
+✅ ENTRY  | 2026-06-04 11:14:22 | AUTHORIZED     | Yash                 | Camera: Main Camera (webcam)
+🚨 EXIT   | 2026-06-04 11:14:24 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 3s
+🚨 ENTRY  | 2026-06-04 11:14:34 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111434.jpg
+🚨 EXIT   | 2026-06-04 11:14:43 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 9s
+✅ EXIT   | 2026-06-04 11:14:46 | AUTHORIZED     | Yash                 | Duration: 0m 24s
+🚨 ENTRY  | 2026-06-04 11:14:49 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111449.jpg
+✅ ENTRY  | 2026-06-04 11:14:49 | AUTHORIZED     | Yash                 | Camera: Main Camera (webcam)
+🚨 EXIT   | 2026-06-04 11:14:51 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 2s
+🚨 ENTRY  | 2026-06-04 11:14:58 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111458.jpg
+✅ EXIT   | 2026-06-04 11:14:59 | AUTHORIZED     | Yash                 | Duration: 0m 10s
+🚨 EXIT   | 2026-06-04 11:14:59 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 11:15:00 | AUTHORIZED     | Ayush                | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 11:15:00 | AUTHORIZED     | Ayush                | Duration: 0m 0s
+🚨 ENTRY  | 2026-06-04 11:15:02 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111502.jpg
+✅ ENTRY  | 2026-06-04 11:15:02 | AUTHORIZED     | Yash                 | Camera: Main Camera (webcam)
+🚨 EXIT   | 2026-06-04 11:15:10 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 8s
+✅ EXIT   | 2026-06-04 11:15:10 | AUTHORIZED     | Yash                 | Duration: 0m 8s
+✅ ENTRY  | 2026-06-04 11:15:12 | AUTHORIZED     | Yash                 | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 11:15:14 | AUTHORIZED     | Yash                 | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 11:15:17 | AUTHORIZED     | Yash                 | Camera: Main Camera (webcam)
+✅ EXIT   | 2026-06-04 11:15:18 | AUTHORIZED     | Yash                 | Duration: 0m 1s
+🚨 ENTRY  | 2026-06-04 11:15:19 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111519.jpg
+🚨 EXIT   | 2026-06-04 11:15:19 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 0s
+✅ ENTRY  | 2026-06-04 11:15:27 | AUTHORIZED     | Yash                 | Camera: Main Camera (webcam)
+✅ ENTRY  | 2026-06-04 11:15:28 | AUTHORIZED     | Ayush                | Camera: Main Camera (webcam)
+🚨 ENTRY  | 2026-06-04 11:15:29 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_111529.jpg
+✅ EXIT   | 2026-06-04 11:15:30 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ EXIT   | 2026-06-04 11:15:30 | AUTHORIZED     | Yash                 | Duration: 0m 3s
+🚨 EXIT   | 2026-06-04 11:15:30 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 11:22:29 | AUTHORIZED     | Yash                 | Camera: Main Camera (webcam)
+🚨 ENTRY  | 2026-06-04 11:22:33 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_112233.jpg
+🚨 EXIT   | 2026-06-04 11:22:39 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 6s
+🚨 ENTRY  | 2026-06-04 11:22:46 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_112245.jpg
+🚨 EXIT   | 2026-06-04 11:22:51 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 5s
+🚨 ENTRY  | 2026-06-04 11:22:53 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_112253.jpg
+🚨 EXIT   | 2026-06-04 11:23:05 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 12s
+✅ EXIT   | 2026-06-04 11:23:12 | AUTHORIZED     | Yash                 | Duration: 0m 43s
+✅ ENTRY  | 2026-06-04 12:03:29 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 12:03:34 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 12:03:41 | AUTHORIZED     | Yash                 | Duration: 0m 12s
+✅ EXIT   | 2026-06-04 12:03:43 | AUTHORIZED     | Ayush                | Duration: 0m 9s
+✅ ENTRY  | 2026-06-04 12:03:44 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 12:03:46 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 12:03:54 | AUTHORIZED     | Yash                 | Duration: 0m 8s
+✅ EXIT   | 2026-06-04 12:03:54 | AUTHORIZED     | Ayush                | Duration: 0m 10s
+✅ ENTRY  | 2026-06-04 12:03:56 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 12:03:57 | AUTHORIZED     | Yash                 | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 12:04:00 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 12:04:01 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 12:04:03 | AUTHORIZED     | Yash                 | Duration: 0m 3s
+✅ EXIT   | 2026-06-04 12:04:04 | AUTHORIZED     | Ayush                | Duration: 0m 3s
+✅ ENTRY  | 2026-06-04 12:04:06 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 12:04:08 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 12:04:10 | AUTHORIZED     | Yash                 | Duration: 0m 2s
+✅ EXIT   | 2026-06-04 12:04:10 | AUTHORIZED     | Ayush                | Duration: 0m 4s
+✅ ENTRY  | 2026-06-04 12:04:11 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 12:04:13 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 12:04:14 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 12:04:14 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+🚨 ENTRY  | 2026-06-04 12:04:16 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Entrance (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_120416.jpg
+🚨 EXIT   | 2026-06-04 12:04:18 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 2s
+✅ EXIT   | 2026-06-04 12:04:18 | AUTHORIZED     | Yash                 | Duration: 0m 4s
+✅ EXIT   | 2026-06-04 12:04:30 | AUTHORIZED     | Ayush                | Duration: 0m 16s
+✅ ENTRY  | 2026-06-04 12:04:32 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 12:04:35 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 12:04:44 | AUTHORIZED     | Yash                 | Duration: 0m 9s
+✅ ENTRY  | 2026-06-04 12:04:47 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 12:05:10 | AUTHORIZED     | Ayush                | Duration: 0m 38s
+✅ EXIT   | 2026-06-04 12:05:10 | AUTHORIZED     | Yash                 | Duration: 0m 23s
+✅ ENTRY  | 2026-06-04 14:15:29 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 14:15:31 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:15:34 | AUTHORIZED     | Yash                 | Duration: 0m 5s
+✅ EXIT   | 2026-06-04 14:15:34 | AUTHORIZED     | Ayush                | Duration: 0m 3s
+✅ ENTRY  | 2026-06-04 14:15:36 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:15:36 | AUTHORIZED     | Ayush                | Duration: 0m 0s
+✅ ENTRY  | 2026-06-04 14:15:38 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:16:32 | AUTHORIZED     | Ayush                | Duration: 0m 54s
+✅ ENTRY  | 2026-06-04 14:17:53 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:17:54 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 14:18:34 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:18:36 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 14:18:54 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:18:56 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 14:19:08 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:19:12 | AUTHORIZED     | Ayush                | Duration: 0m 4s
+✅ ENTRY  | 2026-06-04 14:19:49 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:19:53 | AUTHORIZED     | Ayush                | Duration: 0m 4s
+✅ ENTRY  | 2026-06-04 14:20:00 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:20:02 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 14:20:22 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:20:23 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 14:20:40 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:20:41 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 14:20:44 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:20:48 | AUTHORIZED     | Ayush                | Duration: 0m 4s
+✅ ENTRY  | 2026-06-04 14:21:58 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:22:01 | AUTHORIZED     | Ayush                | Duration: 0m 3s
+✅ ENTRY  | 2026-06-04 14:22:31 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:22:33 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 14:23:28 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:23:29 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 14:27:13 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:27:14 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 14:27:42 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:27:43 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 14:27:49 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:27:58 | AUTHORIZED     | Ayush                | Duration: 0m 9s
+✅ ENTRY  | 2026-06-04 14:28:00 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:28:05 | AUTHORIZED     | Ayush                | Duration: 0m 5s
+✅ ENTRY  | 2026-06-04 14:28:09 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:28:19 | AUTHORIZED     | Ayush                | Duration: 0m 10s
+✅ ENTRY  | 2026-06-04 14:28:20 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:28:28 | AUTHORIZED     | Ayush                | Duration: 0m 8s
+✅ ENTRY  | 2026-06-04 14:28:29 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:28:31 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 14:28:33 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:28:40 | AUTHORIZED     | Ayush                | Duration: 0m 7s
+✅ ENTRY  | 2026-06-04 14:28:44 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:28:44 | AUTHORIZED     | Ayush                | Duration: 0m 0s
+✅ ENTRY  | 2026-06-04 14:28:46 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:29:45 | AUTHORIZED     | Ayush                | Duration: 0m 59s
+✅ ENTRY  | 2026-06-04 14:29:46 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:29:47 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 14:29:49 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:31:13 | AUTHORIZED     | Ayush                | Duration: 1m 24s
+✅ ENTRY  | 2026-06-04 14:31:17 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:31:18 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 14:32:24 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:32:29 | AUTHORIZED     | Ayush                | Duration: 0m 5s
+✅ ENTRY  | 2026-06-04 14:35:30 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:35:31 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 14:36:44 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:36:49 | AUTHORIZED     | Ayush                | Duration: 0m 5s
+✅ ENTRY  | 2026-06-04 14:36:51 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:36:52 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 14:36:56 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:36:58 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 14:37:16 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:37:18 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 14:38:17 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:38:19 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 14:38:25 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+🚨 ENTRY  | 2026-06-04 14:38:39 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Entrance (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_143839.jpg
+🚨 EXIT   | 2026-06-04 14:38:40 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 1s
+✅ EXIT   | 2026-06-04 14:38:41 | AUTHORIZED     | Ayush                | Duration: 0m 16s
+✅ ENTRY  | 2026-06-04 14:38:44 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:38:45 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 14:38:48 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:38:50 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 14:39:02 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:39:03 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 14:39:33 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:39:36 | AUTHORIZED     | Ayush                | Duration: 0m 3s
+✅ ENTRY  | 2026-06-04 14:39:53 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 14:39:55 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 15:28:15 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 15:28:17 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+🚨 ENTRY  | 2026-06-04 15:28:20 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Entrance (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_152820.jpg
+🚨 EXIT   | 2026-06-04 15:28:23 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 3s
+✅ EXIT   | 2026-06-04 15:28:36 | AUTHORIZED     | Yash                 | Duration: 0m 21s
+🚨 ENTRY  | 2026-06-04 15:29:40 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Entrance (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_152940.jpg
+✅ EXIT   | 2026-06-04 15:29:41 | AUTHORIZED     | Ayush                | Duration: 1m 24s
+🚨 EXIT   | 2026-06-04 15:29:41 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 15:37:49 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 15:37:49 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 15:37:51 | AUTHORIZED     | Yash                 | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 15:37:55 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 15:38:04 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 15:39:41 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 15:39:41 | AUTHORIZED     | Ayush                | Duration: 0m 0s
+✅ ENTRY  | 2026-06-04 15:39:43 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 15:39:45 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 15:39:47 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+🚨 ENTRY  | 2026-06-04 15:39:49 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Entrance (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_153949.jpg
+🚨 EXIT   | 2026-06-04 15:40:00 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 11s
+✅ ENTRY  | 2026-06-04 16:00:58 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:00:59 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 16:01:01 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:01:02 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 16:01:49 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 16:01:51 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:01:59 | AUTHORIZED     | Yash                 | Duration: 0m 8s
+✅ EXIT   | 2026-06-04 16:01:59 | AUTHORIZED     | Ayush                | Duration: 0m 10s
+✅ ENTRY  | 2026-06-04 16:04:12 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:04:13 | AUTHORIZED     | Yash                 | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 16:05:24 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:05:25 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 16:05:34 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:05:35 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 16:05:36 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:05:36 | AUTHORIZED     | Ayush                | Duration: 0m 0s
+✅ ENTRY  | 2026-06-04 16:05:44 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:05:54 | AUTHORIZED     | Ayush                | Duration: 0m 10s
+✅ ENTRY  | 2026-06-04 16:05:56 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:06:00 | AUTHORIZED     | Ayush                | Duration: 0m 4s
+✅ ENTRY  | 2026-06-04 16:06:02 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:06:25 | AUTHORIZED     | Ayush                | Duration: 0m 23s
+✅ ENTRY  | 2026-06-04 16:06:26 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:06:40 | AUTHORIZED     | Ayush                | Duration: 0m 14s
+✅ ENTRY  | 2026-06-04 16:06:45 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+🚨 ENTRY  | 2026-06-04 16:06:55 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Entrance (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_160655.jpg
+🚨 EXIT   | 2026-06-04 16:06:57 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 2s
+✅ EXIT   | 2026-06-04 16:07:01 | AUTHORIZED     | Ayush                | Duration: 0m 16s
+✅ ENTRY  | 2026-06-04 16:07:48 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 16:07:59 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 16:08:27 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 16:09:05 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:09:11 | AUTHORIZED     | Yash                 | Duration: 0m 6s
+✅ EXIT   | 2026-06-04 16:09:11 | AUTHORIZED     | Ayush                | Duration: 0m 44s
+✅ ENTRY  | 2026-06-04 16:09:14 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 16:09:14 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:09:21 | AUTHORIZED     | Yash                 | Duration: 0m 7s
+✅ EXIT   | 2026-06-04 16:09:34 | AUTHORIZED     | Ayush                | Duration: 0m 20s
+✅ ENTRY  | 2026-06-04 16:09:36 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:09:49 | AUTHORIZED     | Ayush                | Duration: 0m 13s
+✅ ENTRY  | 2026-06-04 16:17:20 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:17:22 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 16:17:37 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:17:38 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 16:19:25 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 16:21:33 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:21:43 | AUTHORIZED     | Ayush                | Duration: 0m 10s
+✅ ENTRY  | 2026-06-04 16:23:02 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:23:04 | AUTHORIZED     | Ayush                | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 16:27:45 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:28:00 | AUTHORIZED     | Ayush                | Duration: 0m 15s
+✅ ENTRY  | 2026-06-04 16:28:06 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:28:11 | AUTHORIZED     | Ayush                | Duration: 0m 5s
+✅ ENTRY  | 2026-06-04 16:28:11 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:28:16 | AUTHORIZED     | Ayush                | Duration: 0m 5s
+✅ ENTRY  | 2026-06-04 16:28:17 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:28:18 | AUTHORIZED     | Ayush                | Duration: 0m 1s
+✅ ENTRY  | 2026-06-04 16:31:52 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 16:31:55 | AUTHORIZED     | Ayush                | Duration: 0m 3s
+✅ ENTRY  | 2026-06-04 17:00:51 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 17:00:52 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 17:00:52 | AUTHORIZED     | Yash                 | Duration: 0m 1s
+🚨 ENTRY  | 2026-06-04 17:00:53 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Entrance (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_170053.jpg
+✅ ENTRY  | 2026-06-04 17:00:57 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 17:01:57 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 17:01:57 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+🚨 ENTRY  | 2026-06-04 17:01:58 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Entrance (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_170158.jpg
+✅ EXIT   | 2026-06-04 17:02:00 | AUTHORIZED     | Ayush                | Duration: 0m 3s
+✅ ENTRY  | 2026-06-04 17:02:00 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 17:02:15 | AUTHORIZED     | Yash                 | Duration: 0m 18s
+✅ ENTRY  | 2026-06-04 17:02:16 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 17:02:30 | AUTHORIZED     | Ayush                | Duration: 0m 30s
+✅ EXIT   | 2026-06-04 17:02:37 | AUTHORIZED     | Yash                 | Duration: 0m 21s
+✅ ENTRY  | 2026-06-04 17:02:43 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 17:02:53 | AUTHORIZED     | Ayush                | Duration: 0m 10s
+✅ ENTRY  | 2026-06-04 17:03:13 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 17:03:20 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+🚨 EXIT   | 2026-06-04 17:03:52 | UNAUTHORIZED   | UNKNOWN              | Duration: 1m 54s
+✅ EXIT   | 2026-06-04 17:03:52 | AUTHORIZED     | Ayush                | Duration: 0m 39s
+✅ EXIT   | 2026-06-04 17:04:10 | AUTHORIZED     | Yash                 | Duration: 0m 50s
+✅ ENTRY  | 2026-06-04 17:04:11 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ ENTRY  | 2026-06-04 17:04:12 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 17:04:17 | AUTHORIZED     | Yash                 | Duration: 0m 5s
+✅ EXIT   | 2026-06-04 17:04:17 | AUTHORIZED     | Ayush                | Duration: 0m 6s
+✅ ENTRY  | 2026-06-04 17:04:32 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+🚨 ENTRY  | 2026-06-04 17:04:35 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Entrance (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_170435.jpg
+🚨 EXIT   | 2026-06-04 17:04:41 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 6s
+✅ ENTRY  | 2026-06-04 17:21:00 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 17:21:13 | AUTHORIZED     | Yash                 | Duration: 0m 13s
+🚨 ENTRY  | 2026-06-04 17:21:25 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Entrance (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_172125.jpg
+🚨 EXIT   | 2026-06-04 17:21:48 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 23s
+🚨 ENTRY  | 2026-06-04 17:21:52 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Entrance (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_172152.jpg
+🚨 EXIT   | 2026-06-04 17:21:54 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 17:22:07 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 17:22:12 | AUTHORIZED     | Yash                 | Duration: 0m 5s
+✅ ENTRY  | 2026-06-04 17:23:52 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+🚨 ENTRY  | 2026-06-04 17:23:52 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Entrance (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_172352.jpg
+✅ EXIT   | 2026-06-04 17:23:54 | AUTHORIZED     | Yash                 | Duration: 0m 2s
+✅ ENTRY  | 2026-06-04 17:23:56 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 17:23:59 | AUTHORIZED     | Ayush                | Duration: 0m 3s
+✅ ENTRY  | 2026-06-04 17:24:01 | AUTHORIZED     | Ayush                | Camera: Main Entrance (webcam)
+✅ EXIT   | 2026-06-04 17:24:05 | AUTHORIZED     | Ayush                | Duration: 0m 4s
+🚨 EXIT   | 2026-06-04 17:24:17 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 25s
+✅ ENTRY  | 2026-06-04 17:24:21 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+🚨 ENTRY  | 2026-06-04 17:24:25 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Entrance (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_172425.jpg
+🚨 EXIT   | 2026-06-04 17:24:29 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 4s
+✅ EXIT   | 2026-06-04 17:24:30 | AUTHORIZED     | Yash                 | Duration: 0m 9s
+🚨 ENTRY  | 2026-06-04 17:24:41 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Entrance (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260604_172441.jpg
+✅ ENTRY  | 2026-06-04 17:24:53 | AUTHORIZED     | Yash                 | Camera: Main Entrance (webcam)
+🚨 EXIT   | 2026-06-04 17:24:54 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 13s
+🚨 ENTRY  | 2026-06-05 09:05:51 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260605_090551.jpg
+🚨 EXIT   | 2026-06-05 09:06:00 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 9s
+🚨 ENTRY  | 2026-06-05 09:11:31 | UNAUTHORIZED   | UNKNOWN              | Camera: Main Camera (webcam) | Snapshot: snapshots\intruder_UNKNOWN_20260605_091131.jpg
+🚨 EXIT   | 2026-06-05 09:12:00 | UNAUTHORIZED   | UNKNOWN              | Duration: 0m 29s

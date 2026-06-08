@@ -16,7 +16,7 @@ Changes vs v10:
 # ── MUST be set before ANY cv2 import ─────────────────────────────────────
 import os
 os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS'] = \
-    'rtsp_transport;tcp|timeout;5000000|max_delay;500000|stimeout;5000000'
+    'rtsp_transport;tcp|timeout;15000000|stimeout;15000000|allowed_media_types;video|fflags;nobuffer|flags;low_delay|framedrop;1'
 os.environ['OPENCV_LOG_LEVEL']              = 'ERROR'
 os.environ['OPENCV_VIDEOIO_PRIORITY_MSMF']  = '0'
 
@@ -513,19 +513,94 @@ def open_camera(src, cam_type: str = 'webcam'):
 
     # RTSP
     if cam_type == 'rtsp':
-        log.info(f'[CAMERA] Opening RTSP: {src}')
-        cap = cv2.VideoCapture(str(src), cv2.CAP_FFMPEG)
-        if not cap.isOpened():
+        from urllib.parse import urlparse, unquote
+
+        src_str = str(src)
+        log.info(f'[CAMERA] Opening RTSP: {src_str}')
+
+        # Parse the URL and decode credentials so special chars like @ in
+        # passwords are handled correctly by FFmpeg (not re-encoded in URL).
+        try:
+            parsed   = urlparse(src_str)
+            username = unquote(parsed.username or '')
+            password = unquote(parsed.password or '')
+            host     = parsed.hostname or ''
+            port     = parsed.port or 554
+            path     = parsed.path or '/'
+            # Rebuild a clean URL without credentials — pass them via os.environ
+            clean_url = f'rtsp://{host}:{port}{path}'
+        except Exception:
+            username  = ''
+            password  = ''
+            clean_url = src_str
+
+        # Build candidate URL list:
+        #   1. TCP + main stream
+        #   2. TCP + sub stream  (Channels/102 — lower res, more stable)
+        #   3. TCP + old-style path
+        #   4. UDP fallback
+        base_paths = [
+            path,
+            path.replace('/101', '/102').replace('/1', '/2') if '/1' in path else '/Streaming/Channels/102',
+            '/h264/ch1/main/av_stream',
+        ]
+        candidates = []
+        for bp in base_paths:
+            candidates.append((f'rtsp://{host}:{port}{bp}', 'TCP'))
+        candidates.append((f'rtsp://{host}:{port}{path}', 'UDP'))
+
+        for open_url, transport in candidates:
+            log.info(f'[CAMERA] Trying {transport}: {open_url}')
+
+            # Set FFmpeg credentials via environment so special chars are safe
+            import os as _os
+            env_backup = {}
+            if username:
+                env_backup['OPENCV_FFMPEG_CAPTURE_OPTIONS'] = _os.environ.get(
+                    'OPENCV_FFMPEG_CAPTURE_OPTIONS', '')
+                opts_parts = [
+                    f'rtsp_transport;{transport.lower()}',
+                    f'rtsp_flags;prefer_tcp' if transport == 'TCP' else '',
+                    f'allowed_media_types;video',
+                    f'timeout;10000000',
+                ]
+                opts = '|'.join(p for p in opts_parts if p)
+                _os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS'] = opts
+
+            # Embed decoded credentials back into URL safely using @ only once
+            if username and password:
+                # re-percent-encode only the password's special chars
+                from urllib.parse import quote as _quote
+                safe_pass = _quote(password, safe='')
+                final_url = f'rtsp://{_quote(username, safe="")}:{safe_pass}@{host}:{port}{open_url[open_url.index(host)+len(host):]}'
+            else:
+                final_url = open_url
+
+            cap = cv2.VideoCapture(final_url, cv2.CAP_FFMPEG)
+
+            # Restore env
+            if env_backup:
+                _os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS'] = env_backup.get(
+                    'OPENCV_FFMPEG_CAPTURE_OPTIONS', '')
+
+            if not cap.isOpened():
+                cap.release()
+                log.warning(f'[CAMERA] RTSP ({transport}) failed to open: {open_url}')
+                continue
+
+            cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+            # Drain any buffered frames so we start reading live frames
+            for _ in range(5):
+                cap.grab()
+            ret, frm = _safe_read(cap, timeout=12.0)
+            if ret and frm is not None:
+                log.info(f'[CAMERA] RTSP stream verified OK ({transport}, path={open_url})')
+                return cap
+
             cap.release()
-            log.warning('[CAMERA] RTSP VideoCapture failed to open')
-            return None
-        cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
-        ret, frm = _safe_read(cap, timeout=8.0)
-        if ret and frm is not None:
-            log.info('[CAMERA] RTSP stream verified OK')
-            return cap
-        cap.release()
-        log.warning('[CAMERA] RTSP opened but no frames — bad URL or unreachable')
+            log.warning(f'[CAMERA] RTSP ({transport}) opened but no frames: {open_url}')
+
+        log.warning('[CAMERA] RTSP: all attempts failed — check IP, port, credentials and that camera is on same network')
         return None
 
     # Webcam
@@ -907,6 +982,11 @@ def ensure_detection_thread(cam_cfg: dict) -> None:
         try:
             while True:
                 if cam_type == 'rtsp':
+                    # Drain buffered frames — grab() decodes nothing, just advances
+                    # the buffer pointer so the next read() returns the latest frame
+                    with _cv2_read_lock:
+                        cap.grab()
+                        cap.grab()
                     ret, frame = _safe_read(cap, timeout=5.0)
                 else:
                     with _cv2_read_lock:
