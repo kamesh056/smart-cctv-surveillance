@@ -7,11 +7,12 @@
   },
   "cameras": [
     {
-      "id": "cam1780739595",
-      "label": "Main Camera",
-      "source": "webcam",
-      "rtsp_url": "",
+      "id": "cam1780902093",
+      "label": "IPCAM",
+      "source": "rtsp",
+      "rtsp_url": "rtsp://admin:Jpl%402199@10.108.40.129:554/Streaming/Channels/101",
       "reconnect_attempts": 5,
+      "hazard_enabled": true,
       "location_name": "",
       "floor": "",
       "building": "",
@@ -19,11 +20,12 @@
       "location_lng": null
     },
     {
-      "id": "cam1780893365",
-      "label": "IPCAM",
-      "source": "rtsp",
-      "rtsp_url": "rtsp://admin:Jpl%402199@10.108.40.129:554/Streaming/Channels/101",
+      "id": "cam1780918931",
+      "label": "Main Camera",
+      "source": "webcam",
+      "rtsp_url": "",
       "reconnect_attempts": 5,
+      "hazard_enabled": false,
       "location_name": "",
       "floor": "",
       "building": "",
@@ -35,9 +37,9 @@
     "tolerance": 0.5,
     "model": "hog",
     "upsample": 1,
-    "scale_factor": 1.0,
+    "scale_factor": 0.5,
     "min_face_height_ratio": 0.04,
-    "min_distance_gap": 0.07
+    "min_distance_gap": 0.05
   },
   "alerts": {
     "admin_email": "youremail@gmail.com",
@@ -66,5 +68,26 @@
     "confirm_seconds": 3.0,
     "cooldown_seconds": 120.0,
     "alert_on_clear": true
+  },
+  "yolo": {
+    "enabled": true,
+    "model": "yolov8n.pt",
+    "confidence": 0.4,
+    "classes": [
+      0
+    ],
+    "process_every": 6,
+    "use_openvino": true
+  },
+  "hazard": {
+    "enabled": true,
+    "fire_model": "yolov8n-fire.pt",
+    "confidence": 0.55,
+    "process_every": 15,
+    "cooldown_seconds": 120,
+    "flood_hue_low": 90,
+    "flood_hue_high": 130,
+    "flood_sat_low": 80,
+    "flood_area_pct": 0.3
   }
 }

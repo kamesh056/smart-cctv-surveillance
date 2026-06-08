@@ -278,6 +278,18 @@ def deactivate_person(person_id):
     conn.close()
 
 
+def delete_person(person_id):
+    """Hard-delete a person and their access events from the database."""
+    conn = get_connection()
+    cur  = conn.cursor()
+    # Nullify foreign key references in access_events first
+    cur.execute('UPDATE access_events SET person_id=NULL WHERE person_id=%s', (person_id,))
+    cur.execute('DELETE FROM persons WHERE id=%s', (person_id,))
+    conn.commit()
+    cur.close()
+    conn.close()
+
+
 # ── Access event helpers ───────────────────────────────────────────────────
 
 def record_entry(person_name, person_id=None, status='AUTHORIZED',

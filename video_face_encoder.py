@@ -8,8 +8,9 @@ from pathlib import Path
 
 PERSONS_DIR    = Path('authorized_persons')
 ENCODINGS_FILE = 'face_encodings.pkl'
-SAMPLE_FRAMES  = 40      # How many frames to sample from video
-BLUR_THRESHOLD = 80.0    # Laplacian variance; below this = too blurry, skip
+SAMPLE_FRAMES  = 60      # How many frames to sample from video (more = better coverage)
+BLUR_THRESHOLD = 40.0    # Laplacian variance; below this = too blurry, skip
+                         # Lowered from 80 — browser webm is inherently softer
 MAX_ENC_PER_PERSON = 12  # Store up to 12 diverse encodings per person
 
 
@@ -19,31 +20,65 @@ def is_blurry(frame):
 
 
 def extract_encodings_from_video(video_path, sample_count=SAMPLE_FRAMES):
-    """Sample frames from video, return list of face encodings."""
+    """Sample frames from video, return list of face encodings.
+
+    Uses sequential reading so it works with .webm and other container formats
+    where CAP_PROP_FRAME_COUNT is unreliable or returns -1.
+    """
     cap = cv2.VideoCapture(str(video_path))
-    total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-    if total == 0:
-        cap.release()
+    if not cap.isOpened():
+        print(f"    [ENCODER] Cannot open video: {video_path}")
         return []
 
+    # Read all frames first (works for webm/mkv where frame count is unknown)
+    all_frames = []
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        all_frames.append(frame)
+    cap.release()
+
+    total = len(all_frames)
+    if total == 0:
+        print(f"    [ENCODER] No frames read from: {video_path}")
+        return []
+
+    print(f"    [ENCODER] Read {total} frames from video")
+
+    # Sample evenly across all frames
     indices = np.linspace(0, total - 1, min(sample_count, total), dtype=int)
     encodings = []
 
     for idx in indices:
-        cap.set(cv2.CAP_PROP_POS_FRAMES, int(idx))
-        ret, frame = cap.read()
-        if not ret:
-            continue
+        frame = all_frames[int(idx)]
         if is_blurry(frame):
             continue
 
         rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        locs = face_recognition.face_locations(rgb, model='hog')
-        encs = face_recognition.face_encodings(rgb, locs)
+
+        # Try HOG first (fast). If it finds nothing, try with upsample=1
+        # which helps catch smaller faces in wide-angle webcam frames.
+        locs = face_recognition.face_locations(rgb, model='hog', number_of_times_to_upsample=1)
+        if not locs:
+            # Retry with upsample=2 on a slightly upscaled frame
+            h, w = rgb.shape[:2]
+            if h < 480:
+                rgb_up = cv2.resize(rgb, (w*2, h*2))
+                locs = face_recognition.face_locations(rgb_up, model='hog', number_of_times_to_upsample=1)
+                encs = face_recognition.face_encodings(rgb_up, locs)
+            else:
+                encs = []
+        else:
+            encs = face_recognition.face_encodings(rgb, locs)
+
         if encs:
             encodings.append(encs[0])   # Take first (largest) face
 
-    cap.release()
+    print(f'    [ENCODER] {len(indices)} frames sampled, {len(encodings)} faces found')
+    if not encodings:
+        print(f'    [ENCODER] TIP: Make sure face is well-lit and clearly visible.')
+        print(f'              If video is very short (<3s), try re-recording a longer one.')
     return encodings
 
 

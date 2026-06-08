@@ -59,6 +59,23 @@ class AlertSystem:
             level    = 'info',
         )
 
+    def send_hazard_alert(self, camera: str = 'Unknown',
+                          hazard: str = 'hazard',
+                          details: str = ''):
+        """Record a fire / smoke / flood hazard alert."""
+        icons = {'fire': '🔥', 'smoke': '💨', 'flood': '🌊'}
+        icon  = icons.get(hazard.lower(), '⚠')
+        _add_alert(
+            title   = f'{icon} {hazard.upper()} Detected — {camera}',
+            message = (
+                f'{hazard.capitalize()} detected on camera "{camera}". '
+                f'{details}  Please respond immediately.'
+            ),
+            snapshot = None,
+            camera   = camera,
+            level    = 'danger',
+        )
+
 
 def _add_alert(title: str, message: str, snapshot: str = None,
                camera: str = '', level: str = 'danger'):
